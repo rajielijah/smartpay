@@ -1,0 +1,31 @@
+import 'package:shared_preferences/shared_preferences.dart';
+// ignore_for_file: constant_identifier_names
+
+
+
+const String PREFS_KEY_OTP_SETTING = "PREFS_KEY_OTP_SETTING";
+const String PREFS_KEY_DEVICE_TOKEN = "PREFS_KEY_DEVICE_TOKEN";
+const String PREFS_KEY_ONBOARDING_SCREEN = "PREFS_KEY_ONBOARDING_SCREEN";
+
+
+
+
+class AppPreferences {
+
+   final SharedPreferences _sharedPreferences;
+
+  AppPreferences(this._sharedPreferences);
+
+
+    bool getUserOtpSetting()  {
+    return _sharedPreferences.getBool(PREFS_KEY_OTP_SETTING) ?? true;
+  }
+
+    Future<String> getDeviceToken() async{
+    return _sharedPreferences.getString(PREFS_KEY_DEVICE_TOKEN) ?? "frn29CE0M0Xmu00QEWiO_i:APA91bFl8ewytX60UWzm4loASQp-0wGfVDejCcKl62jShkupZQmH4Qf6LbkRl-uvh5w5cT6irSkc1uwEFsiswe2KrSqQE24-cWeY02oeisKnZ-TJuW33DsNsgaQFkdym4sofuaFST0hJ";
+  }
+
+Future<bool> isOnBoardingScreenViewed() async {
+    return _sharedPreferences.getBool(PREFS_KEY_ONBOARDING_SCREEN) ?? false;
+  }  
+}
