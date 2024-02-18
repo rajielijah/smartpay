@@ -6,6 +6,8 @@ import 'package:shared_preferences/shared_preferences.dart';
 const String PREFS_KEY_OTP_SETTING = "PREFS_KEY_OTP_SETTING";
 const String PREFS_KEY_DEVICE_TOKEN = "PREFS_KEY_DEVICE_TOKEN";
 const String PREFS_KEY_ONBOARDING_SCREEN = "PREFS_KEY_ONBOARDING_SCREEN";
+const String PREFS_KEY_USER_EMAIL = "PREFS_KEY_USER_EMAIL";
+
 
 
 
@@ -16,6 +18,9 @@ class AppPreferences {
 
   AppPreferences(this._sharedPreferences);
 
+    Future<void> setOnBoardingScreenViewed() async {
+    _sharedPreferences.setBool(PREFS_KEY_ONBOARDING_SCREEN, true);
+  }
 
     bool getUserOtpSetting()  {
     return _sharedPreferences.getBool(PREFS_KEY_OTP_SETTING) ?? true;
@@ -28,4 +33,7 @@ class AppPreferences {
 Future<bool> isOnBoardingScreenViewed() async {
     return _sharedPreferences.getBool(PREFS_KEY_ONBOARDING_SCREEN) ?? false;
   }  
+ String getUserEmail()  {
+    return _sharedPreferences.getString(PREFS_KEY_USER_EMAIL) ?? "";
+  }
 }

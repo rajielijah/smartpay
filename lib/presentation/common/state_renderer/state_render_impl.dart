@@ -201,7 +201,7 @@ extension FlowStateExtension on FlowState {
 
           // show popup
           showPopUpTemp(context, StateRendererType.POPUP_SUCCESS, getMessage(),
-              title: AppStrings.oneCare,route: getRoute());
+              title: AppStrings.smartpay,route: getRoute());
 
           // return content ui of the screen
           return contentScreenWidget;

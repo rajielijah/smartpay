@@ -43,7 +43,7 @@ class ErrorHandler implements Exception {
   Failure _handleError(DioError error) {
     switch (error.type) {
       // ignore: deprecated_member_use
-      case DioErrorType.connectTimeout:
+      case DioErrorType.connectionTimeout:
         return DataSource.CONNECT_TIMEOUT.getFailure();
       case DioErrorType.sendTimeout:
         return DataSource.SEND_TIMEOUT.getFailure();
@@ -66,8 +66,12 @@ class ErrorHandler implements Exception {
         }
       case DioErrorType.cancel:
         return DataSource.CANCEL.getFailure();
-      case DioErrorType.other:
+      case DioErrorType.unknown:
         return DataSource.DEFAULT.getFailure();
+      case DioExceptionType.badCertificate:
+        return DataSource.DEFAULT.getFailure();
+        case DioExceptionType.connectionError:
+     return DataSource.DEFAULT.getFailure();
     }
   }
 }

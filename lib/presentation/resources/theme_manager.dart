@@ -19,10 +19,6 @@ ThemeData getApplicationTheme() {
       // ripple color
       splashColor: ColorManager.secondary.withOpacity(0.15),
       // card view theme
-      cardTheme: CardTheme(
-          color: ColorManager.white,
-          shadowColor: ColorManager.grey,
-          elevation: AppSize.s4),
       // App bar theme
       appBarTheme: AppBarTheme(
           centerTitle: true,
@@ -105,7 +101,7 @@ ThemeData getApplicationTheme() {
             borderSide:
             BorderSide(color: ColorManager.borderColor, width: AppSize.s1_5),
             borderRadius: const BorderRadius.all(Radius.circular(AppSize.s5))),
-      ), colorScheme: ColorScheme.fromSwatch().copyWith(secondary: ColorManager.oneCareGreen2));
+      ), colorScheme: ColorScheme.fromSwatch().copyWith(secondary: ColorManager.smartpayGreen2));
 }
 
 final defaultPinTheme = PinTheme(

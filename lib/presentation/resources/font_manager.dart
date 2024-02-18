@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import '../../app/sizes.dart';
 
 class FontConstants {
-  static const String fontFamily = "Basier Circle";
+  static const String fontFamily = "SF Pro Display`";
 }
 
 class FontWeightManager {

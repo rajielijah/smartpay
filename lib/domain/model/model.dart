@@ -24,3 +24,10 @@ class Authentication {
 
   Authentication(this.otpIsDisabled,this.userId,this.otpSent,this.activationRequired,this.responseData);
 }
+
+class SliderObject {
+  String title;
+  String image;
+
+  SliderObject(this.title, this.image);
+}
