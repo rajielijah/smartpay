@@ -9,13 +9,17 @@ class AppStrings {
   static const String retry_again = "Retry";
   static const String success= "Success";
   static const String onBoardingTitle1= "Finance app the safest and most trusted";
-  static const String onBoardingTitle2= "The fastest transactionprocess only here";
-    static const String onBoardingSubTitle1= "Finance app the safest and most trusted";
-  static const String onBoardingSubTitle2= "The fastest transactionprocess only here";
+  static const String onBoardingTitle2= "The fastest transaction process only here";
+    static const String onBoardingSubTitle1= "Your finance work starts here. Our here to help you track and deal with speeding up your transactions.";
+  static const String onBoardingSubTitle2= "Get easy to pay all your bills with just a few steps. Paying your bills become fast and efficient.";
   static const String done= "Done";
+  static const String getStarted= "Get Started";
+
+  static const String skip= "Skip";
+
   static const String next= "Next";
   static const String login= "Login";
-  static const String signin = "Sign in";
+  static const String signin = "Sign In";
 
   static const String hi = "Hi There! 👋";
   static const String welcome = " Welcome back, Sign in to your account";
@@ -24,10 +28,12 @@ class AppStrings {
   
   static const String password = "Password";
   static const String passwordError = "Please enter valid password";
-  static const String hintPassword = "Enter password";
+  static const String hintPassword = "P assword";
   static const String forgetPassword = "Forgot password?";
   static const String passwordInfo = "Password must contain at least 1 uppercase alphabet, 1 lowercase alphabet, 1 number, 1 special character & 6 characters long.";
-  static const String signUpNew = "Don’t have an account? Sign Up";
+  static const String signUpNew = "Don’t have an account?";
+  static const String signUp = "Sign Up";
+
    static const String forgotPassword = "Forgot password?";
    static const String sendmemail = "Send me mail";
 

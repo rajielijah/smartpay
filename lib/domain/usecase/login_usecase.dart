@@ -22,15 +22,15 @@ class LoginUseCase implements BaseUseCase<LoginUseCaseInput, AuthenticationBase>
   @override
   Future<Either<Failure, AuthenticationBase>> execute(
       LoginUseCaseInput input) async {
-    log("logging in with ${_appPreferences.getDeviceToken()}");
+    log("logging in with ${_appPreferences.getdevice_name()}");
     return await _repository.login(
         LoginRequest(
-            input.email, input.password, await _appPreferences.getDeviceToken()
+            input.email, input.password, await _appPreferences.getdevice_name()
         ));
   }
   Future<Either<Failure, EmailLogin>> executeForEmail(
       LoginUseCaseInput input) async {
-    return await _repository.loginEmail(LoginRequest(input.email, input.password, await _appPreferences.getDeviceToken()
+    return await _repository.loginEmail(LoginRequest(input.email, input.password, await _appPreferences.getdevice_name()
     ));
   }
   }

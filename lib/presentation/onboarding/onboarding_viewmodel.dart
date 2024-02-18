@@ -70,10 +70,10 @@ class OnBoardingViewModel extends BaseViewModel
   List<SliderObject> _getSliderData() => [
         SliderObject(
             AppStrings.onBoardingTitle1,
-            ImageAssets.onboardingLogo1),
+            ImageAssets.onboardingLogo1, AppStrings.onBoardingSubTitle1),
         SliderObject(
             AppStrings.onBoardingTitle2,
-            ImageAssets.onboardingLogo2),
+            ImageAssets.onboardingLogo2, AppStrings.onBoardingSubTitle2),
       ];
 
   _postDataToView() {

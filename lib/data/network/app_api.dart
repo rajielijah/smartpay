@@ -18,7 +18,7 @@ abstract class AppServiceClient {
   Future<AuthenticationBaseResponse> login(
       @Field("email") String email,
       @Field("password") String password,
-      @Field("deviceToken") String deviceToken,
+      @Field("device_name") String device_name,
       );
   // @POST("/api/Auth/Login")
   // Future<EmailLogin> emailLogin(
@@ -27,7 +27,7 @@ abstract class AppServiceClient {
   //     @Field("organizationId") String organizationId,
   //     @Field("password") String password,
   //     @Field("roleId") int roleId,
-  //     @Field("deviceToken") String deviceToken,
+  //     @Field("device_name") String device_name,
   //     );
 
 }

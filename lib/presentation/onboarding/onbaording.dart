@@ -89,70 +89,71 @@ class _OnBoardingViewState extends State<OnBoardingView> {
                 _viewModel.onPageChanged(index);
               },
               itemBuilder: (context, index) {
-                return Column(
-                  children: [
-                    SizedBox(height: resHeight(AppSize.s169, _sHeight)),
-                    OnBoardingPage(sliderViewObject.sliderObject),
-                    SizedBox(
-                      height: resHeight(AppSize.s88, _sHeight),
-                    ),
-                    Column(
-                      children: [
-                        _getBottomSheetWidget(sliderViewObject),
-                        SizedBox(
-                          height: resHeight(AppSize.s88, _sHeight),
+                return Padding(
+                  padding: EdgeInsets.only(left: resHeight(FontSize.s14, _sHeight), right: resHeight(FontSize.s14, _sHeight)),
+                  child: Column(
+                    children: [
+                      GestureDetector(
+                        onTap: (){
+                          _navigationService.navigateReplacementTo(Routes.loginRoute);
+                        },
+                        child: Align(
+                          alignment: Alignment.topRight,
+                          child: Text(AppStrings.skip,  
+                          style: getBoldStyle(
+                            color: ColorManager.primarybase,
+                            fontSize: resHeight(FontSize.s16, _sHeight))),
                         ),
-                        Padding(
-                          padding: EdgeInsets.only(
-                              left: resWidth(AppSize.s222, _sWidth),
-                              right: resWidth(AppSize.s36, _sWidth)),
-                          child: SizedBox(
-                              height: resHeight(AppSize.s44, _sHeight),
-                              width: resWidth(AppSize.s117, _sWidth),
-                              child: ValueListenableBuilder(
-                                  valueListenable: _isFinalIndex,
-                                  builder: (context, isFinalIndex, child) {
-                                    return ElevatedButton(
-                                        style: ElevatedButton.styleFrom(
-                                            shape: RoundedRectangleBorder(
-                                                borderRadius:
-                                                    BorderRadius.circular(
-                                                        AppSize.s22)), backgroundColor: ColorManager.smartpayGreen),
-                                        onPressed: () {
-                                          _isFinalIndex.value
-                                              ? _navigationService.navigateReplacementTo(
-                                                  Routes.landingPageRoute)
-                                              : _pageController.animateToPage(
-                                                  _viewModel.goNext(),
-                                                  duration: const Duration(
-                                                      milliseconds:
-                                                          DurationConstant
-                                                              .d300),
-                                                  curve: Curves.easeInCirc);
-                                        },
-                                        child: _isFinalIndex.value
-                                            ? Center(
-                                                child: Text(
-                                                  AppStrings.done,
-                                                  style: getMediumStyle(
-                                                      color: ColorManager.white,
-                                                      fontSize: FontSize.s16),
-                                                ),
-                                              )
-                                            : Center(
-                                                child: Text(
-                                                  AppStrings.next,
-                                                  style: getMediumStyle(
-                                                      color: ColorManager.white,
-                                                      fontSize: FontSize.s16),
-                                                ),
-                                              ));
-                                  })),
-                        )
-                        // add layout for indicator and arrows
-                      ],
-                    ),
-                  ],
+                      ),
+                      SizedBox(height: resHeight(AppSize.s169, _sHeight)),
+                      Padding(
+                           padding: EdgeInsets.only(
+                                left: resWidth(AppSize.s55, _sWidth),
+                                right: resWidth(AppSize.s55, _sWidth)),
+                        child: OnBoardingPage(sliderViewObject.sliderObject),
+                      ),
+                      SizedBox(
+                        height: resHeight(AppSize.s28, _sHeight),
+                      ),
+                      Column(
+                        children: [
+                          _getBottomSheetWidget(sliderViewObject),
+                          SizedBox(
+                            height: resHeight(AppSize.s28, _sHeight),
+                          ),
+                          Padding(
+                            padding: EdgeInsets.only(
+                                left: resWidth(AppSize.s55, _sWidth),
+                                right: resWidth(AppSize.s55, _sWidth)),
+                            child: SizedBox(
+                                height: resHeight(AppSize.s56, _sHeight),
+                                width: resWidth(AppSize.s287, _sWidth),
+                                child: ElevatedButton(
+                                    style: ElevatedButton.styleFrom(
+                                        shape: RoundedRectangleBorder(
+                                            borderRadius:
+                                                BorderRadius.circular(
+                                                    AppSize.s22)), backgroundColor: ColorManager.black),
+                                    onPressed: () {
+                                    _navigationService.navigateReplacementTo(
+                                              Routes.loginRoute);
+                                         
+                                    },
+                                    child: Center(
+                                            child: Text(
+                                              AppStrings.getStarted,
+                                              style: getMediumStyle(
+                                                  color: ColorManager.white,
+                                                  fontSize: FontSize.s16),
+                                            ),
+                                          )
+                                        )),
+                          )
+                          // add layout for indicator and arrows
+                        ],
+                      ),
+                    ],
+                  ),
                 );
               }),
         ),
@@ -223,8 +224,16 @@ class OnBoardingPage extends StatelessWidget {
         Text(_sliderObject.title,
             textAlign: TextAlign.center,
             style: getBoldStyle(
-                color: ColorManager.secondary,
+                color: ColorManager.black,
                 fontSize: resHeight(FontSize.s24, sHeight))),
+             SizedBox(
+          height: resHeight(AppSize.s20, sHeight),
+        ),
+          Text(_sliderObject.subtitle,
+            textAlign: TextAlign.center,
+            style: getLightStyle(
+                color: ColorManager.black,
+                fontSize: resHeight(FontSize.s14, sHeight))),
       ],
     );
   }

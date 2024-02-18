@@ -2,9 +2,9 @@
 class LoginRequest {
   String email;
   String password;
-  String deviceToken;
+  String device_name;
 
-  LoginRequest(this.email, this.password, this.deviceToken);
+  LoginRequest(this.email, this.password, this.device_name);
 }
 
 class OtpRequest {
@@ -14,9 +14,9 @@ class OtpRequest {
   String organizationId;
   int roleId;
   String otpVia;
-  String deviceToken;
+  String device_name;
 
-  OtpRequest(this.otp, this.pinId, this.userId, this.organizationId, this.roleId, this.otpVia,this.deviceToken);
+  OtpRequest(this.otp, this.pinId, this.userId, this.organizationId, this.roleId, this.otpVia,this.device_name);
 }
 class OtpRequestEmail {
   String otp;
@@ -24,9 +24,9 @@ class OtpRequestEmail {
   String organizationId;
   int roleId;
   String otpVia;
-  String deviceToken;
+  String device_name;
 
-  OtpRequestEmail(this.otp,this.userId, this.organizationId, this.roleId, this.otpVia,this.deviceToken);
+  OtpRequestEmail(this.otp,this.userId, this.organizationId, this.roleId, this.otpVia,this.device_name);
 }
 
 class ForgotPasswordRequest{

@@ -61,6 +61,6 @@ flutter:
   fonts:
     - family: SF Pro Display
       fonts:
-        - asset: assets/fonts/SF-Pro-Display.ttf
+        - asset: assets/fonts/SF-Pro-Display-Regular.ttf
         - asset: assets/fonts/sf-pro-text-bold.ttf
 

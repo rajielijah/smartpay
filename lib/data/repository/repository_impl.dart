@@ -28,7 +28,7 @@ class RepositoryImpl extends Repository {
 
         if (response.code == ApiInternalStatus.SUCCESS) // success
             {
-              _appPreferences.getDeviceToken();
+              _appPreferences.getdevice_name();
           // return data (success)
           // return right
           return Right(response.toDomain());

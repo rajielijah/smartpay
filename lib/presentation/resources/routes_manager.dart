@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:smartpay/presentation/dashboard/dashboard.dart';
 import 'package:smartpay/presentation/forgetpassword/forget_password.dart';
+import 'package:smartpay/presentation/onboarding/onbaording.dart';
 import 'package:smartpay/presentation/resources/strings_manager.dart';
 
 import '../../app/di.dart';
@@ -35,6 +36,13 @@ class RouteGenerator {
     switch(routeSettings.name) {
        case Routes.splashRoute:
         return MaterialPageRoute(builder: (_) => const SplashView());
+       case Routes.onBoardingRoute:
+        initLoginModule();
+        return MaterialPageRoute(builder: (context) {
+          WidgetUtils().init(context);
+          return const OnBoardingView();
+        }
+        );
       case Routes.loginRoute:
         initLoginModule();
         return MaterialPageRoute(builder: (context) {

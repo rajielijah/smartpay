@@ -21,7 +21,6 @@ class SplashView extends StatefulWidget {
 
 class _SplashViewState extends State<SplashView> {
   Timer? _timer;
-  final AppPreferences _appPreferences = instance<AppPreferences>();
   final NavigationService _navigationService = instance<NavigationService>();
 
   _startDelay() {
@@ -29,18 +28,8 @@ class _SplashViewState extends State<SplashView> {
   }
 
   _goNext() async {
-      _appPreferences
-          .isOnBoardingScreenViewed()
-          .then((isOnBoardingScreenViewed) => {
-                if (isOnBoardingScreenViewed)
-                  {
-                    _navigationService.navigateReplacementTo(Routes.landingPageRoute)
-                  }
-                else
-                  {
-                    _navigationService.navigateReplacementTo(Routes.onBoardingRoute)
-                  }
-              });
+                    _navigationService.navigateReplacementTo(Routes.onBoardingRoute);
+             
   }
 
   @override
@@ -75,7 +64,7 @@ class _SplashViewState extends State<SplashView> {
         backgroundColor: ColorManager.white,
         body: Center(
           child: Image(
-            height: resHeight(AppSize.s70, sHeight),
+            height: resHeight(AppSize.s130, sHeight),
             width: resWidth(AppSize.s230, sWidth),
             image: const AssetImage(ImageAssets.splashLogo),
           ),

@@ -5,7 +5,9 @@ import 'package:smartpay/presentation/resources/theme_manager.dart';
 
 import 'app/navigation_services.dart';
 
-void main() {
+void main() async{
+  WidgetsFlutterBinding.ensureInitialized();
+  await initAppModule();
   runApp(const MyApp());
 }
 

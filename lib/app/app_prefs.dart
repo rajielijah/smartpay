@@ -26,7 +26,7 @@ class AppPreferences {
     return _sharedPreferences.getBool(PREFS_KEY_OTP_SETTING) ?? true;
   }
 
-    Future<String> getDeviceToken() async{
+    Future<String> getdevice_name() async{
     return _sharedPreferences.getString(PREFS_KEY_DEVICE_TOKEN) ?? "frn29CE0M0Xmu00QEWiO_i:APA91bFl8ewytX60UWzm4loASQp-0wGfVDejCcKl62jShkupZQmH4Qf6LbkRl-uvh5w5cT6irSkc1uwEFsiswe2KrSqQE24-cWeY02oeisKnZ-TJuW33DsNsgaQFkdym4sofuaFST0hJ";
   }
 

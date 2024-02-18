@@ -13,7 +13,7 @@ class _AppServiceClient implements AppServiceClient {
     this._dio, {
     this.baseUrl,
   }) {
-    baseUrl ??= 'https://smart-pay-mobile.herokuapp.com/api/v1/';
+    baseUrl ??= 'https://mobile-test-2d7e555a4f85.herokuapp.com/api/v1';
   }
 
   final Dio _dio;
@@ -24,7 +24,7 @@ class _AppServiceClient implements AppServiceClient {
   Future<AuthenticationBaseResponse> login(
     String email,
     String password,
-    String deviceToken,
+    String device_name,
   ) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
@@ -32,7 +32,7 @@ class _AppServiceClient implements AppServiceClient {
     final _data = {
       'email': email,
       'password': password,
-      'deviceToken': deviceToken,
+      'device_name': device_name,
     };
     final _result = await _dio.fetch<Map<String, dynamic>>(
         _setStreamType<AuthenticationBaseResponse>(Options(

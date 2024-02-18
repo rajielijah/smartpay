@@ -27,7 +27,8 @@ class Authentication {
 
 class SliderObject {
   String title;
+  String subtitle;
   String image;
 
-  SliderObject(this.title, this.image);
+  SliderObject(this.title, this.image, this.subtitle);
 }

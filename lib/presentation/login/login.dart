@@ -96,11 +96,7 @@ class _LoginViewState extends State<LoginView> {
                   // _viewModel.inputState.add(null);
                   _navigationService.navigateReplacementTo(Routes.landingPageRoute);
                 },
-                icon: Image.asset(
-                  ImageAssets.activeCircle,
-                  height: AppSize.s24,
-                  width: AppSize.s24,
-                )),
+                icon: Icon(Icons.arrow_back_ios, color: ColorManager.black  ,)),
               ),
            backgroundColor: ColorManager.white,
           body: StreamBuilder<FlowState>(
@@ -122,23 +118,38 @@ class _LoginViewState extends State<LoginView> {
       child: ListView(
         // crossAxisAlignment: CrossAxisAlignment.start,
         children: [
+         
           SizedBox(height: resHeight(AppSize.s30, sHeight)),
           SizedBox(
-            height: resHeight(AppSize.s44, sHeight),
+            height: resHeight(AppSize.s14, sHeight),
           ),
-          Center(
+          Padding(
+             padding: EdgeInsets.only(
+                left: resWidth(AppSize.s24, sWidth),
+                right: resWidth(AppSize.s24, sWidth)),
+            child: Align(
+              alignment: Alignment.topLeft,
               child: Text(
-            AppStrings.hi,
-            style: getSemiBoldStyle(
-                color: ColorManager.stateRendererTextColor, fontSize: 16),textAlign: TextAlign.center,
-          )),
+                AppStrings.hi,
+                style: getSemiBoldStyle(
+                color: ColorManager.black, fontSize: FontSize.s24),textAlign: TextAlign.center,
+              ),
+            ),
+          ),
           SizedBox(height: resHeight(AppSize.s4, sHeight)),
-            Center(
-              child: Text(
-            AppStrings.welcome,
-            style: getMediumStyle(
-                color: ColorManager.stateRendererTextColor, fontSize: 16),textAlign: TextAlign.center,
-          )),
+            Padding(
+               padding: EdgeInsets.only(
+                left: resWidth(AppSize.s24, sWidth),
+                right: resWidth(AppSize.s24, sWidth)),
+              child: Align(
+              alignment: Alignment.topLeft,
+                child: Text(
+                AppStrings.welcome,
+                style: getMediumStyle(
+                  color: ColorManager.textColor, fontSize: 16),textAlign: TextAlign.center,
+                        ),
+              ),
+            ),
           SizedBox(height: resHeight(AppSize.s40, sHeight)),
           Padding(
             padding: EdgeInsets.only(
@@ -147,20 +158,35 @@ class _LoginViewState extends State<LoginView> {
             child: StreamBuilder<bool>(
               stream: _viewModel.outputIsUserNameValid,
               builder: (context, snapshot) {
-                return TextFormField(
-                    cursorColor: ColorManager.secondary,
+                return TextField(
+                    cursorColor: ColorManager.textColor,
                     style: getRegularStyle(
                         color: ColorManager.textFieldTextColor,
                         fontSize: FontSize.s14),
                     textInputAction: TextInputAction.next,
                     keyboardType: TextInputType.text,
-                    controller: _userNameController,
+                    controller: _userNameController, 
                     decoration: InputDecoration(
-                      hintText: "Enter your email",
-                      labelText: "Email",
-                      errorText: (snapshot.data ?? true)
-                          ? null
-                          : "Kindly enter a valid email",
+                      fillColor: ColorManager.greyColor,
+                      filled: true,
+                    enabledBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(FontSize.s20),
+                      borderSide: BorderSide(
+                        color: ColorManager.greyColor ,
+                        width: 1.0,
+                      ),
+                    ),
+                    focusedBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(FontSize.s20),
+                        borderSide:  BorderSide(
+                          color: ColorManager.primarybase,
+                          width: 2.0,
+                        ),
+                      ),
+                      hintText: "Email",
+                      // errorText: (snapshot.data ?? true)
+                      //     ? null
+                      //     : "Kindly enter a valid email",
                     ));
               },
             ),
@@ -204,33 +230,56 @@ class _LoginViewState extends State<LoginView> {
                             });
                           },
                         ),
+                         fillColor: ColorManager.greyColor,
+                      filled: true,
+                    enabledBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(FontSize.s20),
+                      borderSide: BorderSide(
+                        color: ColorManager.greyColor ,
+                        width: 1.0,
+                      ),
+                    ),
+                    focusedBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(FontSize.s20),
+                        borderSide:  BorderSide(
+                          color: ColorManager.primarybase,
+                          width: 2.0,
+                        ),
+                      ),
                         hintText: AppStrings.hintPassword,
-                        labelText: AppStrings.password,
-                        errorText: (snapshot.data ?? true)
-                            ? null
-                            : AppStrings.passwordError),
+                        // labelText: AppStrings.password,
+                        // errorText: (snapshot.data ?? true)
+                        //     ? null
+                        //     : AppStrings.passwordError
+                            ),
                   );
                 });
               },
             ),
           ),
           SizedBox(height: resHeight(AppSize.s16, sHeight)),
-          Center(
-            child: TextButton(
-              onPressed: () {
-                _navigationService.navigateReplacementTo(Routes.forgetpassword);
-              },
-              child: Text(AppStrings.forgetPassword,
-                  style: getRegularStyle(
-                      color: ColorManager.greenbase,
-                      fontSize: FontSize.s14)),
+          Padding(
+            padding: EdgeInsets.only(
+                left: resWidth(AppSize.s24, sWidth),
+                right: resWidth(AppSize.s24, sWidth)),  
+            child: Align(
+              alignment: Alignment.topLeft,
+              child: TextButton(
+                onPressed: () {
+                  _navigationService.navigateReplacementTo(Routes.forgetpassword);
+                },
+                child: Text(AppStrings.forgetPassword,
+                    style: getBoldStyle(
+                        color: ColorManager.greenbase,
+                        fontSize: FontSize.s14)),
+              ),
             ),
           ),
           SizedBox(height: resHeight(AppSize.s35, sHeight)),
           Padding(
               padding: EdgeInsets.only(
-                  left: resWidth(AppSize.s67, sWidth),
-                  right: resWidth(AppSize.s67, sWidth)),
+                  left: resWidth(AppSize.s24, sWidth),
+                  right: resWidth(AppSize.s24, sWidth)),
               child: StreamBuilder<bool>(
                 stream: _viewModel.outputIsAllInputsValid,
                 builder: (context, snapshot) {
@@ -266,13 +315,19 @@ class _LoginViewState extends State<LoginView> {
           ),
           Center(
             child: Row(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
+                Text(AppStrings.signUpNew,
+                      style: getMediumStyle(
+                          color: ColorManager.textColor,
+                          fontSize: FontSize.s13)),
                 GestureDetector(
                   onTap: () {
                     _navigationService.navigateReplacementTo(Routes.signUpRoute);
                   },
-                  child: Text(AppStrings.signUpNew,
-                      style: getMediumStyle(
+                  child: Text(AppStrings.signUp,
+                      style: getBoldStyle(
                           color: ColorManager.greenbase,
                           fontSize: FontSize.s13)),
                 ),
