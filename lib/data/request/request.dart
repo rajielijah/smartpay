@@ -7,6 +7,30 @@ class LoginRequest {
   LoginRequest(this.email, this.password, this.device_name);
 }
 
+class EmailRequest {
+  String email;
+
+  EmailRequest(this.email);
+}
+
+class VerifyEmailRequest {
+  String email;
+  int token;
+
+  VerifyEmailRequest(this.email, this.token);
+}
+
+class RegisterRequest {
+  String email;
+  String password;
+  String device_name;
+  String username;
+  String fullName;
+  String country;
+
+  RegisterRequest(this.email, this.password, this.device_name, this.country, this.fullName, this.username);
+}
+
 class OtpRequest {
   String otp;
   String pinId;

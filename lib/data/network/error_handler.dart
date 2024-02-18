@@ -42,7 +42,6 @@ class ErrorHandler implements Exception {
 
   Failure _handleError(DioError error) {
     switch (error.type) {
-      // ignore: deprecated_member_use
       case DioErrorType.connectionTimeout:
         return DataSource.CONNECT_TIMEOUT.getFailure();
       case DioErrorType.sendTimeout:
@@ -164,5 +163,7 @@ class ResponseMessage {
 
 class ApiInternalStatus {
   static const String SUCCESS = "200";
+  static const String TRUE = "true";
+
   static const int FAILURE = 1;
 }

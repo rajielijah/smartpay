@@ -3,6 +3,7 @@
 import 'package:dio/dio.dart';
 import 'package:retrofit/http.dart';
 import 'package:smartpay/data/responses/responses.dart';
+import 'package:smartpay/models/authentication_models/sign_up_model.dart';
 
 
 import '../../app/constant.dart';
@@ -20,14 +21,26 @@ abstract class AppServiceClient {
       @Field("password") String password,
       @Field("device_name") String device_name,
       );
-  // @POST("/api/Auth/Login")
-  // Future<EmailLogin> emailLogin(
-  //     @Field("otpVia") String otpVia,
-  //     @Field("email") String email,
-  //     @Field("organizationId") String organizationId,
-  //     @Field("password") String password,
-  //     @Field("roleId") int roleId,
-  //     @Field("device_name") String device_name,
-  //     );
+ 
+    @POST("/auth/email")
+  Future<SignUp> email(
+      @Field("email") String email,
+      );
+
+     @POST("/auth/email/verify")
+  Future<VerifyEmail> verifyEmail(
+      @Field("email") String email,
+      @Field("token") int token
+      );
+
+  @POST("/auth/register")
+  Future<Register> register(
+      @Field("fullName") String fullName,
+      @Field("email") String email,
+      @Field("password") String password,
+      @Field("device_name") String device_name,
+      @Field("username") String username,
+      @Field("country") String country,
+      );
 
 }
