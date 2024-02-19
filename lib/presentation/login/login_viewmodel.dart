@@ -11,7 +11,6 @@ import '../base/baseviewmodel.dart';
 import '../common/freezed_data_class.dart';
 import '../common/state_renderer/state_render_impl.dart';
 import '../common/state_renderer/state_rendere.dart';
-import '../resources/routes_manager.dart';
 
 class LoginViewModel extends BaseViewModel 
 with LoginViewModelInputs, LoginViewModelOutputs {
@@ -21,7 +20,6 @@ with LoginViewModelInputs, LoginViewModelOutputs {
   final StreamController _userNameStreamController = StreamController<String>.broadcast();
   final StreamController _passwordStreamController = StreamController<String>.broadcast();
   final StreamController _isAllInputsValidStreamController = StreamController<void>.broadcast();
-  final NavigationService _navigationService = instance<NavigationService>();
 
   StreamController isUserLoggedInSuccessfullyStreamController = StreamController<String>();
 

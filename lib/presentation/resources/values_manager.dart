@@ -8,7 +8,7 @@ class AppMargin {
 }
 
 class PinPutLength{
-  static const int pl6 = 6;
+  static const int pl5 = 5;
 }
 
 class AppPadding {
@@ -134,6 +134,7 @@ class AppSize {
   static const double s128 = 128.0;
   static const double s130 = 130.0;
   static const double s133 = 133.0;
+  static const double s134 = 134.0;
   static const double s136 = 136.0;
   static const double s140 = 140.0;
   static const double s155 = 155.0;

@@ -15,8 +15,8 @@ class LoginObject with _$LoginObject {
 
 @freezed
 class SignUpObject with _$SignUpObject {
-  factory SignUpObject(String email, String password, String fullName, String username, 
-    String country, String otp  
+  factory SignUpObject( String full_name, String email, String password, String device_name, String username, 
+    String country,  String otp
   ) = _SignUpObject;
 }
 

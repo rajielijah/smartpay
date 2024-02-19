@@ -6,6 +6,7 @@ import 'package:flutter/services.dart';
 import 'package:pinput/pinput.dart';
 import 'package:smartpay/presentation/sign_up/sign_up_viewmodel.dart';
 
+import '../../app/app_prefs.dart';
 import '../../app/di.dart';
 import '../../app/navigation_services.dart';
 import '../../app/sizes.dart';
@@ -31,19 +32,26 @@ class _OtpViewState extends State<OtpView> {
   double sWidth = WidgetUtils.screenWidth;
   late ValueNotifier<bool> _isEnabled;
   Timer? _timer;
+  final AppPreferences _appPreferences = instance<AppPreferences>();
+
 
   final SignUpViewModel _viewModel = instance<SignUpViewModel>();
   final NavigationService _navigationService = instance<NavigationService>();
 
   final TextEditingController _otpController = TextEditingController();
+  final TextEditingController _emailController = TextEditingController();
+
   final _formKey = GlobalKey<FormState>();
 
   _bind() {
     _viewModel.start();
+     if(_appPreferences.getUserEmail().isNotEmpty){
+      _emailController.text = _appPreferences.getUserEmail();
+      _viewModel.setEmail(_emailController.text);
+    }
     _otpController.addListener(() => _viewModel.setOtp(_otpController.text));
-
     _viewModel.isOtpVerifiedSuccessfullyStreamController.stream.listen((token) {
-      // navigate to main screen
+      // navigate to register screen
       SchedulerBinding.instance.addPostFrameCallback((_) {
         _navigationService.navigateReplacementTo(Routes.register);
       });
@@ -139,7 +147,7 @@ class _OtpViewState extends State<OtpView> {
             ),
             SizedBox(height: resHeight(AppSize.s100, sHeight)),
             StreamBuilder<bool>(
-              stream: _viewModel.outputIsAllInputsValid,
+              stream: _viewModel.outputIsOtplValid,
               builder: (context, snapshot) {
                 return SizedBox(
                     width: resWidth(AppSize.s282, sWidth),
@@ -181,13 +189,13 @@ class _OtpViewState extends State<OtpView> {
       autofocus: true,
       showCursor: true,
       controller: _otpController,
-      length: PinPutLength.pl6,
+      length: PinPutLength.pl5,
       defaultPinTheme: defaultPinTheme,
       focusedPinTheme: focusedPinTheme,
       submittedPinTheme: submittedPinTheme,
       errorPinTheme: errorPinTheme,
       validator: (value) =>
-          value?.length != PinPutLength.pl6 ? AppStrings.otpError : null,
+          value?.length != PinPutLength.pl5 ? AppStrings.otpError : null,
     );
   }
 

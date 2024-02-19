@@ -7,6 +7,8 @@ const String PREFS_KEY_OTP_SETTING = "PREFS_KEY_OTP_SETTING";
 const String PREFS_KEY_DEVICE_TOKEN = "PREFS_KEY_DEVICE_TOKEN";
 const String PREFS_KEY_ONBOARDING_SCREEN = "PREFS_KEY_ONBOARDING_SCREEN";
 const String PREFS_KEY_USER_EMAIL = "PREFS_KEY_USER_EMAIL";
+const String PREFS_KEY_NEW_EMAIL = "PREFS_KEY_NEW_EMAIL";
+
 
 
 
@@ -22,6 +24,9 @@ class AppPreferences {
     _sharedPreferences.setString(PREFS_KEY_USER_EMAIL, userEmail);
   }
 
+ Future<void> setNewEmail(String newEmail) async {
+    _sharedPreferences.setString(PREFS_KEY_USER_EMAIL, newEmail);
+  }
     Future<void> setOnBoardingScreenViewed() async {
     _sharedPreferences.setBool(PREFS_KEY_ONBOARDING_SCREEN, true);
   }
@@ -39,5 +44,9 @@ Future<bool> isOnBoardingScreenViewed() async {
   }  
  String getUserEmail()  {
     return _sharedPreferences.getString(PREFS_KEY_USER_EMAIL) ?? "";
+  }
+
+   String getNewEmail()  {
+    return _sharedPreferences.getString(PREFS_KEY_NEW_EMAIL) ?? "";
   }
 }

@@ -37,7 +37,6 @@ class _RegisterViewState extends State<RegisterView> {
   bool confirmNotShown = true;
 
 
-  final AppPreferences _appPreferences = instance<AppPreferences>();
   final NavigationService _navigationService = instance<NavigationService>();
   final SignUpViewModel _viewModel = instance<SignUpViewModel>();
 
@@ -50,18 +49,12 @@ class _RegisterViewState extends State<RegisterView> {
 
   _bind() async {
     _viewModel.start();
-     if(_appPreferences.getUserEmail().isNotEmpty){
-      _userNameController.text = _appPreferences.getUserEmail();
-      _viewModel.setEmail(_emailController.text);
-    }
     _emailController
       .addListener(() => _viewModel.setEmail(_emailController.text));
     _userNameController
       .addListener(() => _viewModel.setUsername(_userNameController.text));
     _countryController
       .addListener(() => _viewModel.setCountry(_countryController.text));
-    _fullNameController
-      .addListener(() => _viewModel.setFullName(_fullNameController.text));
     _fullNameController
       .addListener(() => _viewModel.setFullName(_fullNameController.text));
     _passwordController
@@ -116,19 +109,39 @@ class _RegisterViewState extends State<RegisterView> {
       child: ListView(
         children: [
           SizedBox(height: resHeight(AppSize.s30, sHeight)),
-          Padding(
-               padding: EdgeInsets.only(
-                left: resWidth(AppSize.s24, sWidth),
+            Padding(
+              padding:  EdgeInsets.only(
+                  left: resWidth(AppSize.s24, sWidth),
                 right: resWidth(AppSize.s24, sWidth)),
-              child: Align(
-              alignment: Alignment.topLeft,
-                child: Text(
-                AppStrings.yourself,
-                style: getMediumStyle(
-                  color: ColorManager.textColor, fontSize: AppSize.s24),textAlign: TextAlign.center,
-                        ),
+              child: Row(
+                children: [
+                  Text(
+                    AppStrings.abit,
+                    style: getBoldStyle(
+                      color: ColorManager.black, fontSize: AppSize.s24),textAlign: TextAlign.center,
+                       ),
+                ],
               ),
             ),
+          Padding(
+            padding:  EdgeInsets.only(
+                 left: resWidth(AppSize.s24, sWidth),
+                right: resWidth(AppSize.s24, sWidth)),
+            child: Row(
+              children: [
+                Text(
+                AppStrings.about,
+                style: getBoldStyle(
+                  color: ColorManager.black, fontSize: AppSize.s24),textAlign: TextAlign.center,
+                   ),
+                Text(
+                AppStrings.yourself,
+                style: getBoldStyle(
+                  color: ColorManager.greenbase, fontSize: AppSize.s24),textAlign: TextAlign.center,
+                   ),
+              ],
+            ),
+          ),
           SizedBox(height: resHeight(AppSize.s40, sHeight)),
           Padding(
             padding: EdgeInsets.only(
@@ -175,7 +188,7 @@ class _RegisterViewState extends State<RegisterView> {
                 left: resWidth(AppSize.s24, sWidth),
                 right: resWidth(AppSize.s24, sWidth)),
             child: StreamBuilder<bool>(
-              stream: _viewModel.outputIsFullNameValid,
+              stream: _viewModel.outputIsUsernameValid,
               builder: (context, snapshot) {
                 return TextField(
                     cursorColor: ColorManager.textColor,
@@ -203,6 +216,49 @@ class _RegisterViewState extends State<RegisterView> {
                         ),
                       ),
                       hintText: "UserName",
+                    ));
+              },
+            ),
+          ),
+          SizedBox(
+            height: resHeight(AppSize.s24, sHeight),
+          ),
+          Padding(
+            padding: EdgeInsets.only(
+                left: resWidth(AppSize.s24, sWidth),
+                right: resWidth(AppSize.s24, sWidth)),
+            child: StreamBuilder<bool>(
+              stream: _viewModel.outputIsCountryValid,
+              builder: (context, snapshot) {
+                return TextField(
+                    cursorColor: ColorManager.textColor,
+                    style: getRegularStyle(
+                        color: ColorManager.textFieldTextColor,
+                        fontSize: FontSize.s14),
+                    textInputAction: TextInputAction.next,
+                    keyboardType: TextInputType.text,
+                    controller: _countryController, 
+                     readOnly: true, // Prevents the keyboard from appearing
+                     onTap: _showCountryPicker,
+                    decoration: InputDecoration(
+                      suffixIcon: Icon(Icons.arrow_drop_down, color: ColorManager.black,),
+                      fillColor: ColorManager.greyColor,
+                      filled: true,
+                    enabledBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(FontSize.s20),
+                      borderSide: BorderSide(
+                        color: ColorManager.greyColor ,
+                        width: 1.0,
+                      ),
+                    ),
+                    focusedBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(FontSize.s20),
+                        borderSide:  BorderSide(
+                          color: ColorManager.primarybase,
+                          width: 2.0,
+                        ),
+                      ),
+                      hintText: "Country",
                     ));
               },
             ),
@@ -269,7 +325,41 @@ class _RegisterViewState extends State<RegisterView> {
               },
             ),
           ),
-          SizedBox(height: resHeight(AppSize.s16, sHeight)),
+          SizedBox(height: resHeight(AppSize.s24, sHeight)),
+           Padding(
+              padding: EdgeInsets.only(
+                  left: resWidth(AppSize.s24, sWidth),
+                  right: resWidth(AppSize.s24, sWidth)),
+              child: StreamBuilder<bool>(
+                stream: _viewModel.outputIsPasswordValid,
+                builder: (context, snapshot) {
+                  return SizedBox(
+                    width: resWidth(AppSize.s241, sWidth),
+                    height: AppSize.s50,
+                    child: ValueListenableBuilder(
+                      valueListenable: _isEnabled,
+                      builder: (context, isEnabled, child) => ElevatedButton(
+                          onPressed:
+                              ((snapshot.data ?? false) && _isEnabled.value)
+                                  ? () {
+                                      _isEnabled.value = false;
+                                      // _viewModel.register();
+                                      _navigationService.navigateReplacementTo(Routes.congratulations);
+                                      _timer = Timer(
+                                          const Duration(milliseconds: 200),
+                                          () => _isEnabled.value = true);
+                                    }
+                                  : null,
+                          child: Text(
+                            AppStrings.continued,
+                            style: getBoldStyle(
+                                color: ColorManager.white,
+                                fontSize: FontSize.s16),
+                          )),
+                    ),
+                  );
+                },
+              )),
         ],
       ),
     );
@@ -284,4 +374,45 @@ class _RegisterViewState extends State<RegisterView> {
     _viewModel.dispose();
     super.dispose();
   }
+
+  final List<String> _countries = ['USA', 'Canada', 'Singapore', 'Germany',  'China', 'Netherland', 'France', 'Italy'];
+ void _showCountryPicker() {
+  showModalBottomSheet(
+    context: context,
+    shape: const RoundedRectangleBorder(
+      borderRadius: BorderRadius.vertical(top: Radius.circular(25.0)),
+    ),
+    elevation: 10.0,
+    builder: (BuildContext context) {
+      return Container(
+        padding: const EdgeInsets.symmetric(vertical: 16.0),
+        decoration: const BoxDecoration(
+          borderRadius: BorderRadius.vertical(top: Radius.circular(25.0)),
+          color: Colors.white, 
+        ),
+        child: ListView.builder(
+          itemCount: _countries.length,
+          itemBuilder: (BuildContext context, int index) {
+            return ListTile(
+              title: Text(
+                _countries[index],
+                style: const TextStyle(
+                  fontSize: AppSize.s18, // Customize font size
+                  fontWeight: FontWeight.bold, // Change font weight
+                ),
+              ),
+              leading: const Icon(Icons.flag), 
+              onTap: () {
+                // Set the country to the text field and pop the modal
+                _countryController.text = _countries[index];
+                Navigator.pop(context);
+              },
+            );
+          },
+        ),
+      );
+    },
+  );
 }
+
+  }

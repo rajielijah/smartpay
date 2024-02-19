@@ -15,6 +15,8 @@ class AppStrings {
   static const String done= "Done";
   static const String confirm= "Confirm";
   static const String getStarted= "Get Started";
+  static const String continued = "Continue";
+
 
   static const String create= "Create a Smartpay account";
   static const String skip= "Skip";
@@ -35,7 +37,14 @@ class AppStrings {
   static const String otpDesc = "We send a code to ( *****@mail.com ). Enter it here to verify your identity";
   static const String resendOtp = "Resend Code 30 secs";
   static const String otpError = "Invalid OTP";
-  static const String yourself = "Hey there! tell us a bit about yourself";
+  static const String abit = "Hey there! tell us a bit";
+  static const String about = "about";
+  static const String yourself = " yourself";
+  static const String completed = " You’ve completed the onboarding,\n you can start using";
+  static const String congrats = "Congratulations";
+
+  
+
 
 
   

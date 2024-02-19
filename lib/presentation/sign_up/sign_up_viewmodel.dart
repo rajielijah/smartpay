@@ -6,6 +6,8 @@ import 'package:smartpay/domain/usecase/sign_up_usecase.dart';
 import 'package:smartpay/presentation/base/baseviewmodel.dart';
 import 'package:smartpay/presentation/common/freezed_data_class.dart';
 
+import '../../app/app_prefs.dart';
+import '../../app/di.dart';
 import '../../app/function.dart';
 import '../common/state_renderer/state_render_impl.dart';
 import '../common/state_renderer/state_rendere.dart';
@@ -21,11 +23,17 @@ with SignUpViewModelInputs, SignUpViewModelOutputs {
   final StreamController _passwordStreamController = StreamController<String>.broadcast();
   final StreamController _countryStreamController = StreamController<String>.broadcast();
 
+  final AppPreferences _appPreferences = instance<AppPreferences>();
   final StreamController _isAllInputsValidStreamController = StreamController<void>.broadcast();
+  final StreamController _isAllRegisterValidStreamController = StreamController<void>.broadcast();
+
     StreamController isOtpVerifiedSuccessfullyStreamController =
   StreamController<String>();
+
+  StreamController isEmailVerifiedSuccessfullyStreamController = StreamController<String>();
+
   
-    var signupObject = SignUpObject("", "","", "","", "");
+    var signupObject = SignUpObject("", "","", "","", "", "");
 
   final SigUpUseCase _signUpUseCase;
 
@@ -67,6 +75,9 @@ with SignUpViewModelInputs, SignUpViewModelOutputs {
  @override
   Sink get inputPassword => _passwordStreamController.sink;
 
+  @override
+  Sink get inputCountry => _countryStreamController.sink;
+
 
     @override
   Sink get inputIsAllInputValid => _isAllInputsValidStreamController.sink;
@@ -76,6 +87,7 @@ with SignUpViewModelInputs, SignUpViewModelOutputs {
   @override
   email() async{
     inputState.add(LoadingState(stateRendererType: StateRendererType.POPUP_LOADING_STATE));
+    
     (await _signUpUseCase.execute(SignUpUsecaseInput(signupObject.email)))
         .fold(
             (failure) => {
@@ -86,6 +98,9 @@ with SignUpViewModelInputs, SignUpViewModelOutputs {
             (data) async {
           // right -> success (data)
           inputState.add(ContentState());
+         await  _appPreferences.setNewEmail(signupObject.email);
+         print(_appPreferences.getNewEmail());
+          isEmailVerifiedSuccessfullyStreamController.add("");
           // navigate to main screen after the login
         });
   }
@@ -94,7 +109,7 @@ with SignUpViewModelInputs, SignUpViewModelOutputs {
    @override
   verifyEmail() async{
     inputState.add(LoadingState(stateRendererType: StateRendererType.POPUP_LOADING_STATE));
-    (await _signUpUseCase.verifyEmail(VerifyEmailUsecaseInput(signupObject.email, signupObject.otp)))
+    (await _signUpUseCase.verifyEmail(VerifyEmailUsecaseInput(_appPreferences.getUserEmail(), signupObject.otp)))
         .fold(
             (failure) => {
           // left -> failure
@@ -113,8 +128,8 @@ with SignUpViewModelInputs, SignUpViewModelOutputs {
    @override
   register() async{
     inputState.add(LoadingState(stateRendererType: StateRendererType.POPUP_LOADING_STATE));
-    (await _signUpUseCase.register(RegisterUsecaseInput(signupObject.email, signupObject.password, signupObject.country,
-   "web", signupObject.fullName, signupObject.otp, signupObject.username )))
+    (await _signUpUseCase.register(RegisterUsecaseInput(signupObject.full_name, _appPreferences.getUserEmail(), signupObject.password,
+   "web",  signupObject.username, signupObject.country, )))
         .fold(
             (failure) => {
           // left -> failure
@@ -132,6 +147,10 @@ with SignUpViewModelInputs, SignUpViewModelOutputs {
   Stream<bool> get outputIsAllInputsValid => 
   _isAllInputsValidStreamController.stream.map((_) => _isAllInputsValid());
   
+    @override
+  Stream<bool> get outputIsRegisterValid => 
+  _isAllRegisterValidStreamController.stream.map((_) => _isAllRegisterValid());
+
   @override
   Stream<bool> get outputIsEmailValid => _emailStreamController.stream
     .map((email) => isEmailsValid(email));
@@ -140,7 +159,9 @@ with SignUpViewModelInputs, SignUpViewModelOutputs {
   Stream<bool> get outputIsFullNameValid => _fullNameStreamController.stream
       .map((fullName) => isFullNameValid(fullName));
   
-  
+  @override
+  Stream<bool> get outputIsCountryValid => _countryStreamController.stream
+      .map((country) => _isPasswordValid(country));
   
   @override
   Stream<bool> get outputIsPasswordValid => _passwordStreamController.stream
@@ -151,7 +172,9 @@ with SignUpViewModelInputs, SignUpViewModelOutputs {
   Stream<bool> get outputIsUsernameValid => _userNameStreamController.stream
       .map((userName) => _isUserNameValid(userName));
 
-
+    @override
+  Stream<bool> get outputIsOtplValid => _otpStreamController.stream
+  .map((otp) => _isOTPValid(otp));
   
  
   
@@ -168,9 +191,9 @@ with SignUpViewModelInputs, SignUpViewModelOutputs {
   }
   
   @override
-  setFullName(String fullName) {
-    inputFullName.add(fullName);
-    signupObject = signupObject.copyWith(fullName: fullName);
+  setFullName(String full_name) {
+    inputFullName.add(full_name);
+    signupObject = signupObject.copyWith(full_name: full_name);
   }
   
   @override
@@ -211,22 +234,20 @@ with SignUpViewModelInputs, SignUpViewModelOutputs {
   
     bool _isAllInputsValid() {
     return _isPasswordValid(signupObject.password) &&
-        _isUserNameValid(signupObject.email);
+         isFullNameValid(signupObject.full_name);
   }
   
-  
+  bool _isAllRegisterValid() {
+    return _isPasswordValid(signupObject.password);
+  }
+
+  bool _isOTPValid(String otp) {
+    return otp.length == 5;
+  }
 
   _validate() {
     inputIsAllInputValid.add("null");
   }
-  
-  @override
-  Sink get inputCountry => _countryStreamController.sink;
-  
-  
-  @override
-  Stream<bool> get outputIsOtplValid => throw UnimplementedError();
-
 
 }
 
@@ -265,6 +286,11 @@ abstract class SignUpViewModelOutputs {
   Stream<bool> get outputIsFullNameValid;
   Stream<bool> get outputIsUsernameValid;
   Stream<bool> get outputIsPasswordValid;
+  Stream<bool> get outputIsCountryValid;
+  Stream<bool> get outputIsRegisterValid;
+
+
+
 
   Stream<bool> get outputIsAllInputsValid;
 

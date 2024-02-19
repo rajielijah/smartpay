@@ -21,14 +21,14 @@ class VerifyEmailRequest {
 }
 
 class RegisterRequest {
+  String full_name;
   String email;
   String password;
   String device_name;
   String username;
-  String fullName;
   String country;
 
-  RegisterRequest(this.email, this.password, this.device_name, this.country, this.fullName, this.username);
+  RegisterRequest(this.email, this.password, this.device_name, this.country, this.full_name, this.username);
 }
 
 class OtpRequest {

@@ -61,7 +61,7 @@ class RepositoryImpl extends Repository {
   @override
   Future<Either<Failure, SignUp>> email(EmailRequest emailRequest) async{
   if (await checkInternetConnectivity()) {
-      try {
+      // try {
         // its safe to call the API
         final response = await _remoteDataSource.email(emailRequest);
 
@@ -77,12 +77,15 @@ class RepositoryImpl extends Repository {
           return Left(Failure(int.parse(response.message ?? "0"),
               response.message ?? ResponseMessage.DEFAULT));
         }
-      } catch (error) {
-        return (Left(ErrorHandler
-            .handle(error)
-            .failure));
-      }
-    } else {
+      } 
+      // catch (error) {
+      //   print("here is the $error");
+      //   return (Left(ErrorHandler
+      //       .handle(error)
+      //       .failure));
+      // }
+    // } 
+    else {
       // return connection error
       return Left(DataSource.NO_INTERNET_CONNECTION.getFailure());
     }

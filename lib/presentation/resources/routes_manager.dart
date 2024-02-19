@@ -4,6 +4,7 @@ import 'package:smartpay/presentation/dashboard/dashboard.dart';
 import 'package:smartpay/presentation/forgetpassword/forget_password.dart';
 import 'package:smartpay/presentation/onboarding/onbaording.dart';
 import 'package:smartpay/presentation/resources/strings_manager.dart';
+import 'package:smartpay/presentation/sign_up/congratulations.dart';
 import 'package:smartpay/presentation/sign_up/email.dart';
 import 'package:smartpay/presentation/sign_up/register.dart';
 import 'package:smartpay/presentation/sign_up/verify_email.dart';
@@ -24,6 +25,8 @@ class Routes {
   static const String verifyyouridentity = "/verifyyouridentity";
   static const String forgetpassword = "/forgetpassword";
   static const String signUpRoute = "/signUpRoute";
+  static const String congratulations = "/congratulations";
+
 
 
 
@@ -83,6 +86,12 @@ class RouteGenerator {
         return MaterialPageRoute(builder: (context) {
           WidgetUtils().init(context);
           return const RegisterView();
+        }
+        );
+         case Routes.congratulations:
+        return MaterialPageRoute(builder: (context) {
+          WidgetUtils().init(context);
+          return const Congratulations();
         }
         );
       default:

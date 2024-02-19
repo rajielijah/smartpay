@@ -151,9 +151,10 @@ abstract class _LoginObject implements LoginObject {
 
 /// @nodoc
 mixin _$SignUpObject {
+  String get full_name => throw _privateConstructorUsedError;
   String get email => throw _privateConstructorUsedError;
   String get password => throw _privateConstructorUsedError;
-  String get fullName => throw _privateConstructorUsedError;
+  String get device_name => throw _privateConstructorUsedError;
   String get username => throw _privateConstructorUsedError;
   String get country => throw _privateConstructorUsedError;
   String get otp => throw _privateConstructorUsedError;
@@ -170,9 +171,10 @@ abstract class $SignUpObjectCopyWith<$Res> {
       _$SignUpObjectCopyWithImpl<$Res, SignUpObject>;
   @useResult
   $Res call(
-      {String email,
+      {String full_name,
+      String email,
       String password,
-      String fullName,
+      String device_name,
       String username,
       String country,
       String otp});
@@ -191,14 +193,19 @@ class _$SignUpObjectCopyWithImpl<$Res, $Val extends SignUpObject>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? full_name = null,
     Object? email = null,
     Object? password = null,
-    Object? fullName = null,
+    Object? device_name = null,
     Object? username = null,
     Object? country = null,
     Object? otp = null,
   }) {
     return _then(_value.copyWith(
+      full_name: null == full_name
+          ? _value.full_name
+          : full_name // ignore: cast_nullable_to_non_nullable
+              as String,
       email: null == email
           ? _value.email
           : email // ignore: cast_nullable_to_non_nullable
@@ -207,9 +214,9 @@ class _$SignUpObjectCopyWithImpl<$Res, $Val extends SignUpObject>
           ? _value.password
           : password // ignore: cast_nullable_to_non_nullable
               as String,
-      fullName: null == fullName
-          ? _value.fullName
-          : fullName // ignore: cast_nullable_to_non_nullable
+      device_name: null == device_name
+          ? _value.device_name
+          : device_name // ignore: cast_nullable_to_non_nullable
               as String,
       username: null == username
           ? _value.username
@@ -236,9 +243,10 @@ abstract class _$$SignUpObjectImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {String email,
+      {String full_name,
+      String email,
       String password,
-      String fullName,
+      String device_name,
       String username,
       String country,
       String otp});
@@ -255,14 +263,19 @@ class __$$SignUpObjectImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? full_name = null,
     Object? email = null,
     Object? password = null,
-    Object? fullName = null,
+    Object? device_name = null,
     Object? username = null,
     Object? country = null,
     Object? otp = null,
   }) {
     return _then(_$SignUpObjectImpl(
+      null == full_name
+          ? _value.full_name
+          : full_name // ignore: cast_nullable_to_non_nullable
+              as String,
       null == email
           ? _value.email
           : email // ignore: cast_nullable_to_non_nullable
@@ -271,9 +284,9 @@ class __$$SignUpObjectImplCopyWithImpl<$Res>
           ? _value.password
           : password // ignore: cast_nullable_to_non_nullable
               as String,
-      null == fullName
-          ? _value.fullName
-          : fullName // ignore: cast_nullable_to_non_nullable
+      null == device_name
+          ? _value.device_name
+          : device_name // ignore: cast_nullable_to_non_nullable
               as String,
       null == username
           ? _value.username
@@ -294,15 +307,17 @@ class __$$SignUpObjectImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$SignUpObjectImpl implements _SignUpObject {
-  _$SignUpObjectImpl(this.email, this.password, this.fullName, this.username,
-      this.country, this.otp);
+  _$SignUpObjectImpl(this.full_name, this.email, this.password,
+      this.device_name, this.username, this.country, this.otp);
 
+  @override
+  final String full_name;
   @override
   final String email;
   @override
   final String password;
   @override
-  final String fullName;
+  final String device_name;
   @override
   final String username;
   @override
@@ -312,7 +327,7 @@ class _$SignUpObjectImpl implements _SignUpObject {
 
   @override
   String toString() {
-    return 'SignUpObject(email: $email, password: $password, fullName: $fullName, username: $username, country: $country, otp: $otp)';
+    return 'SignUpObject(full_name: $full_name, email: $email, password: $password, device_name: $device_name, username: $username, country: $country, otp: $otp)';
   }
 
   @override
@@ -320,11 +335,13 @@ class _$SignUpObjectImpl implements _SignUpObject {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$SignUpObjectImpl &&
+            (identical(other.full_name, full_name) ||
+                other.full_name == full_name) &&
             (identical(other.email, email) || other.email == email) &&
             (identical(other.password, password) ||
                 other.password == password) &&
-            (identical(other.fullName, fullName) ||
-                other.fullName == fullName) &&
+            (identical(other.device_name, device_name) ||
+                other.device_name == device_name) &&
             (identical(other.username, username) ||
                 other.username == username) &&
             (identical(other.country, country) || other.country == country) &&
@@ -332,8 +349,8 @@ class _$SignUpObjectImpl implements _SignUpObject {
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType, email, password, fullName, username, country, otp);
+  int get hashCode => Object.hash(runtimeType, full_name, email, password,
+      device_name, username, country, otp);
 
   @JsonKey(ignore: true)
   @override
@@ -344,19 +361,22 @@ class _$SignUpObjectImpl implements _SignUpObject {
 
 abstract class _SignUpObject implements SignUpObject {
   factory _SignUpObject(
+      final String full_name,
       final String email,
       final String password,
-      final String fullName,
+      final String device_name,
       final String username,
       final String country,
       final String otp) = _$SignUpObjectImpl;
 
   @override
+  String get full_name;
+  @override
   String get email;
   @override
   String get password;
   @override
-  String get fullName;
+  String get device_name;
   @override
   String get username;
   @override

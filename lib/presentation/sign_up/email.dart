@@ -6,6 +6,7 @@ import 'package:flutter/scheduler.dart';
 import 'package:flutter/services.dart';
 import 'package:smartpay/presentation/sign_up/sign_up_viewmodel.dart';
 
+import '../../app/app_prefs.dart';
 import '../../app/di.dart';
 import '../../app/function.dart';
 import '../../app/navigation_services.dart';
@@ -34,6 +35,8 @@ class _EmailViewState extends State<EmailView> {
   Timer? _timer;
   late StreamSubscription<ConnectivityResult> _connectivitySubscription;
     final NavigationService _navigationService = instance<NavigationService>();
+  final AppPreferences _appPreferences = instance<AppPreferences>();
+
 
   final TextEditingController _emailController = TextEditingController();
   final _formKey = GlobalKey<FormState>();
@@ -46,9 +49,13 @@ class _EmailViewState extends State<EmailView> {
     _emailController
       .addListener(() => _viewModel.setEmail(_emailController.text));
 
-      SchedulerBinding.instance.addPostFrameCallback((_) {
+    _viewModel.isEmailVerifiedSuccessfullyStreamController.stream
+      .listen((token) {
+           SchedulerBinding.instance.addPostFrameCallback((_) {
         _navigationService.navigateReplacementTo(Routes.verifyyouridentity);
       }); 
+       });
+     
   }
 
   @override
@@ -83,7 +90,11 @@ class _EmailViewState extends State<EmailView> {
         body: StreamBuilder<FlowState>(
             stream: _viewModel.outputState,
             builder: (context, snapshot) {
-              return _getContentWidget();
+              return snapshot.data
+                      ?.getScreenWidget(context, _getContentWidget(), () {
+                    _viewModel.start();
+                  }) ??
+                  _getContentWidget();
             },
           ),
     );
@@ -141,10 +152,7 @@ Widget _getContentWidget() {
                         ),
                       ),
                       hintText: "Email",
-                      // errorText: (snapshot.data ?? true)
-                      //     ? null
-                      //     : "Kindly enter a valid email",
-                    ));
+                       ));
               },
             ),
           ),
@@ -166,9 +174,10 @@ Widget _getContentWidget() {
                       builder: (context, isEnabled, child) => ElevatedButton(
                           onPressed:
                               ((snapshot.data ?? false) && _isEnabled.value)
-                                  ? () {
+                                  ? () async{
                                       _isEnabled.value = false;
                                       _viewModel.email();
+                                      await _appPreferences.setNewEmail(_emailController.text);
                                       _timer = Timer(
                                           const Duration(milliseconds: 200),
                                           () => _isEnabled.value = true);

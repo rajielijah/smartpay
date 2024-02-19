@@ -21,21 +21,20 @@ class SigUpUseCase implements BaseUseCase<SignUpUsecaseInput, SignUp> {
     return await _repository.verifyEmail(VerifyEmailRequest(input.email, input.token));
   }
       Future<Either<Failure, Register>> register(RegisterUsecaseInput input) async{
-    return await _repository.register(RegisterRequest(input.email, input.password, input.country, input.fullName, input.username, input.device_name));
+    return await _repository.register(RegisterRequest(input.email, input.password, input.country, input.full_name, input.username, input.device_name));
   }
 }
 
 class RegisterUsecaseInput {
+  String full_name;
   String email;
   String password;
-  String token;
-  String fullName;
-  String country;
-  String username;
   String device_name;
+  String username;
+  String country;
 
 
-  RegisterUsecaseInput(this.email, this.password, this.country, this.device_name, this.fullName, this.token, this.username);
+  RegisterUsecaseInput(this.full_name, this.email, this.password, this.device_name, this.username, this.country);
 }
 
 

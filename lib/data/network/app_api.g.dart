@@ -34,8 +34,8 @@ class _AppServiceClient implements AppServiceClient {
       'password': password,
       'device_name': device_name,
     };
-    final _result = await _dio.fetch<Map<String, dynamic>>(
-        _setStreamType<LoginModel>(Options(
+    final _result = await _dio
+        .fetch<Map<String, dynamic>>(_setStreamType<LoginModel>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,

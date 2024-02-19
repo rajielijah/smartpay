@@ -23,7 +23,7 @@ class SignUp {
 }
 
 class SignUpData {
-  int? token;
+  String? token;
   SignUpData(
       {
       this.token,
