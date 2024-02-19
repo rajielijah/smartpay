@@ -25,16 +25,8 @@ class Routes {
   static const String forgetpassword = "/forgetpassword";
   static const String signUpRoute = "/signUpRoute";
   static const String congratulations = "/congratulations";
+  static const String forgotPassword = "/forgotPassword";
 
-
-
-
-  
-
-
-  
-
-  
 }
 
 
@@ -69,7 +61,7 @@ class RouteGenerator {
           return const OtpView();
         }
         );
-         case Routes.forgetpassword:
+         case Routes.forgotPassword:
         return MaterialPageRoute(builder: (context) {
           WidgetUtils().init(context);
           return const ForgotPasswordView();

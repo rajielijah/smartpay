@@ -1,6 +1,8 @@
 import 'package:get_it/get_it.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:smartpay/domain/usecase/dashboard_usecase.dart';
 import 'package:smartpay/domain/usecase/sign_up_usecase.dart';
+import 'package:smartpay/presentation/dashboard/dashboard_viewmodel.dart';
 import 'package:smartpay/presentation/sign_up/sign_up_viewmodel.dart';
 
 import '../data/data_source/remote_data_source.dart';
@@ -68,9 +70,17 @@ initSignUpModule() {
   }
 }
 
+initDashboardModule() {
+  if (!GetIt.I.isRegistered<DashboardUseCase>()) {
+    instance.registerFactory<DashboardUseCase>(() => DashboardUseCase(instance()));
+    instance.registerFactory<DashboardViewModel>(() => DashboardViewModel(instance(), ''));
+  }
+}
+
 callModules() {
   initLoginModule();
   initSignUpModule();
+  initDashboardModule();
 }
 
 resetModules() {

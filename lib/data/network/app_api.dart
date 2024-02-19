@@ -3,6 +3,7 @@
 import 'package:dio/dio.dart';
 import 'package:retrofit/http.dart';
 import 'package:smartpay/models/authentication_models/sign_up_model.dart';
+import 'package:smartpay/models/message_model.dart';
 
 
 import '../../app/constant.dart';
@@ -42,5 +43,8 @@ abstract class AppServiceClient {
       @Field("username") String username,
       @Field("country") String country,
       );
+
+  @GET("/dashboard")
+  Future<Message> dashboard();
 
 }

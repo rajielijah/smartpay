@@ -2,26 +2,28 @@
 
 class AppStrings {
 
-  static const String smartpay = "smartpay";
+  static const String smartpay = " Smartpay";
   static const String noRouteFound = "no_route_found";
   static const String loading = "This will take a moment\nplease wait...";
   static const String ok = "Ok";
   static const String retry_again = "Retry";
   static const String success= "Success";
-  static const String onBoardingTitle1= "Finance app the safest and most trusted";
-  static const String onBoardingTitle2= "The fastest transaction process only here";
-  static const String onBoardingSubTitle1= "Your finance work starts here. Our here to help you track and deal with speeding up your transactions.";
-  static const String onBoardingSubTitle2= "Get easy to pay all your bills with just a few steps. Paying your bills become fast and efficient.";
+  static const String onBoardingTitle1= "Finance app the safest \nand most trusted";
+  static const String onBoardingTitle2= "The fastest transaction \nprocess only here";
+  static const String onBoardingSubTitle1= "Your finance work starts here. Our here to help \nyou track and deal with speeding up your \ntransactions.";
+  static const String onBoardingSubTitle2= "Get easy to pay all your bills with just a few \nsteps. Paying your bills become fast and \nefficient.";
   static const String done= "Done";
   static const String confirm= "Confirm";
   static const String getStarted= "Get Started";
   static const String continued = "Continue";
 
 
-  static const String create= "Create a Smartpay account";
+  static const String create= "Create a";
+  static const String account= "account";
   static const String skip= "Skip";
   static const String next= "Next";
   static const String login= "Login";
+  static const String logout= "Logout";
   static const String signin = "Sign In";
   static const String hi = "Hi There! 👋";
   static const String welcome = " Welcome back, Sign in to your account";
@@ -42,6 +44,12 @@ class AppStrings {
   static const String yourself = " yourself";
   static const String completed = " You’ve completed the onboarding,\n you can start using";
   static const String congrats = "Congratulations";
+  static const String passwordrecovery = "Passsword Recovery";
+  static const String pdDesc = "Enter your registered email below to receive \n password instructions";
+  static const String or = "OR";
+
+
+  
 
   
 
@@ -57,7 +65,7 @@ class AppStrings {
   static const String forgotPassword = "Forgot password?";
   static const String sendmemail = "Send me mail";
 
-  static const String forgotPasswordBodyText = "Enter your registered email below to receive password instructions";
+  static const String forgotPasswordBodyText = "Enter your registered email below to receive \npassword instructions";
 
 
   // error handler

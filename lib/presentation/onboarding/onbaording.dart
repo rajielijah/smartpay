@@ -105,11 +105,11 @@ class _OnBoardingViewState extends State<OnBoardingView> {
                             fontSize: resHeight(FontSize.s16, _sHeight))),
                         ),
                       ),
-                      SizedBox(height: resHeight(AppSize.s169, _sHeight)),
+                      SizedBox(height: resHeight(AppSize.s70, _sHeight)),
                       Padding(
                            padding: EdgeInsets.only(
-                                left: resWidth(AppSize.s55, _sWidth),
-                                right: resWidth(AppSize.s55, _sWidth)),
+                                left: resWidth(AppSize.s24, _sWidth),
+                                right: resWidth(AppSize.s24, _sWidth)),
                         child: OnBoardingPage(sliderViewObject.sliderObject),
                       ),
                       SizedBox(
@@ -213,11 +213,24 @@ class OnBoardingPage extends StatelessWidget {
     return Column(
       mainAxisAlignment: MainAxisAlignment.start,
       children: [
-        Image.asset(
+        Stack(
+          alignment: Alignment.center,
+          children: [
+            Positioned.fill(child: Image.asset(
           _sliderObject.image,
-          height: resHeight(AppSize.s189, sHeight),
+          height: resHeight(AppSize.s190, sHeight),
           width: resWidth(AppSize.s194, sWidth),
+        ),),
+        Positioned(
+          child: Image.asset(
+            _sliderObject.image1,
+            height: resHeight(AppSize.s189, sHeight),
+            width: resWidth(AppSize.s194, sWidth),
+              ),
+            ),
+          ],
         ),
+        
         SizedBox(
           height: resHeight(AppSize.s20, sHeight),
         ),
@@ -231,8 +244,8 @@ class OnBoardingPage extends StatelessWidget {
         ),
           Text(_sliderObject.subtitle,
             textAlign: TextAlign.center,
-            style: getLightStyle(
-                color: ColorManager.black,
+            style: getRegularStyle(
+                color: ColorManager.textColor,
                 fontSize: resHeight(FontSize.s14, sHeight))),
       ],
     );

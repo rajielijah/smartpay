@@ -9,6 +9,8 @@ class ColorManager {
   static Color stateRendererTextColor = HexColor.fromHex("#6B7280");
   static Color textColor = HexColor.fromHex("#6B7280");
   static Color greyColor = HexColor.fromHex("#F9FAFB");
+  static Color greyBorder = HexColor.fromHex("#E5E7EB");
+
 
 
   static Color smartpayGreen = HexColor.fromHex("#34A853");

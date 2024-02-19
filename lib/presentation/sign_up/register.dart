@@ -84,9 +84,25 @@ class _RegisterViewState extends State<RegisterView> {
                 alignment: Alignment.centerRight,
                 onPressed: () {
                   // _viewModel.inputState.add(null);
-                  _navigationService.navigateReplacementTo(Routes.landingPageRoute);
+                  _navigationService.navigateReplacementTo(Routes.loginRoute);
                 },
-                icon: Icon(Icons.arrow_back_ios, color: ColorManager.black  ,)),
+                icon: Container(
+                  height: AppSize.s40,
+                  width: AppSize.s40,
+                  decoration: BoxDecoration(
+                    border:  Border.all(color: ColorManager.greyBorder),
+                    borderRadius: BorderRadius.circular(AppSize.s12) ,
+                   ),
+                  child: Padding(
+                     padding: EdgeInsets.only(
+                left: resWidth(AppSize.s4, sWidth),
+                ),
+                    child: Align(
+                      alignment: Alignment.center,
+                      child: Icon(Icons.arrow_back_ios, 
+                      size: AppSize.s14,
+                      color: ColorManager.primaryButtonColor,)),
+                  ))),
               ),
            backgroundColor: ColorManager.white,
           body: StreamBuilder<FlowState>(

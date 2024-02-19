@@ -29,6 +29,8 @@ dependencies:
   pinput: ^4.0.0
   connectivity_plus: ^5.0.2
   fluttertoast: ^8.2.4
+  animated_text_kit: ^4.2.2
+  http: ^1.1.0
 
 dev_dependencies:
   flutter_test:

@@ -19,6 +19,8 @@ class ImageAssets {
   static const String inActiveCircle = "$IMAGE_PATH/inactive.png";
    static const String visibleIcon = "$IMAGE_PATH/visible_icon.png";
   static const String invisibleIcon = "$IMAGE_PATH/invisible_icon.png";
+  static const String password = "$IMAGE_PATH/password.png";
+
 
 
 

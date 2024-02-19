@@ -1,4 +1,3 @@
-import 'dart:async';
 
 import 'package:flutter/material.dart';
 
@@ -24,8 +23,6 @@ class ForgotPasswordView extends StatefulWidget {
 class ForgotPasswordViewState extends State<ForgotPasswordView> {
   final double sHeight = WidgetUtils.screenHeight;
   final double sWidth = WidgetUtils.screenWidth;
-  late ValueNotifier<bool> _isEnabled;
-  Timer? _timer;
 
   final NavigationService _navigationService = instance<NavigationService>();
 
@@ -47,18 +44,7 @@ class ForgotPasswordViewState extends State<ForgotPasswordView> {
             //   statusBarBrightness: Brightness.dark,
             //   statusBarIconBrightness: Brightness.dark,
             // ),
-            leading: IconButton(
-                alignment: Alignment.centerRight,
-                onPressed: () {
-                  // _viewModel.inputState.add(null);
-                  _navigationService.navigateReplacementTo(Routes.loginRoute);
-                },
-                icon: Image.asset(
-                  ImageAssets.illustration1,
-                  height: AppSize.s24,
-                  width: AppSize.s24,
-                )),
-          ),
+            ),
           backgroundColor: ColorManager.white,
           body: _getContentWidget(),
          ),
@@ -72,13 +58,23 @@ class ForgotPasswordViewState extends State<ForgotPasswordView> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            SizedBox(height: resHeight(AppSize.s63, sHeight)),
+           Padding(
+              padding: EdgeInsets.only(
+                left: resWidth(AppSize.s24, sWidth),
+                right: resWidth(AppSize.s24, sWidth)),
+             child: Image.asset(
+                    ImageAssets.password,
+                    height: AppSize.s77,
+                    width: AppSize.s90,
+                  ),
+           ),
+            SizedBox(height: resHeight(AppSize.s23, sHeight)),
             Padding(
               padding: EdgeInsets.only(left: resWidth(AppSize.s24, sWidth)),
               child: Text(
-                AppStrings.forgotPassword,
-                style: getSemiBoldStyle(
-                    color: ColorManager.secondary, fontSize: FontSize.s26),
+                AppStrings.passwordrecovery,
+                style: getBoldStyle(
+                    color: ColorManager.black, fontSize: FontSize.s24),
               ),
             ),
             SizedBox(height: resHeight(AppSize.s12, sHeight)),
@@ -87,30 +83,46 @@ class ForgotPasswordViewState extends State<ForgotPasswordView> {
               child: Text(
                 AppStrings.forgotPasswordBodyText,
                 style: getRegularStyle(
-                    color: ColorManager.landingPageDescriptionColor,
-                    fontSize: FontSize.s12),
+                    color: ColorManager.textColor,
+                    fontSize: FontSize.s16),
               ),
             ),
             SizedBox(height: resHeight(AppSize.s59, sHeight)),
-            Padding(
-              padding: EdgeInsets.only(
-                  left: resWidth(AppSize.s24, sWidth),
-                  right: resWidth(AppSize.s24, sWidth)),
-              child: TextFormField(
-                  cursorColor: ColorManager.secondary,
-                  style: getRegularStyle(
-                      color: ColorManager.textFieldTextColor,
-                      fontSize: FontSize.s14),
-                  keyboardType: TextInputType.emailAddress,
-                  controller: _emailController,
-                  decoration: InputDecoration(
-                    prefixIcon: IconButton(
-                      icon: Icon(Icons.mail_lock_outlined,
-                          color: ColorManager.secondary),
-                      onPressed: () {},
+           Padding(
+            padding: EdgeInsets.only(
+                left: resWidth(AppSize.s24, sWidth),
+                right: resWidth(AppSize.s24, sWidth)),
+            child: TextField(
+                cursorColor: ColorManager.textColor,
+                style: getRegularStyle(
+                    color: ColorManager.textFieldTextColor,
+                    fontSize: FontSize.s14),
+                textInputAction: TextInputAction.next,
+                keyboardType: TextInputType.text,
+                controller: _emailController, 
+                decoration: InputDecoration(
+                  fillColor: ColorManager.greyColor,
+                  filled: true,
+                enabledBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(FontSize.s20),
+                  borderSide: BorderSide(
+                    color: ColorManager.greyColor ,
+                    width: 1.0,
+                  ),
+                ),
+                focusedBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(FontSize.s20),
+                    borderSide:  BorderSide(
+                      color: ColorManager.primarybase,
+                      width: 2.0,
                     ),
-                   )),
-            ),
+                  ),
+                  hintText: "Email",
+                  // errorText: (snapshot.data ?? true)
+                  //     ? null
+                  //     : "Kindly enter a valid email",
+                )),
+          ),
             SizedBox(height: resHeight(AppSize.s112, sHeight)),
             Padding(
                 padding: EdgeInsets.only(
@@ -119,29 +131,19 @@ class ForgotPasswordViewState extends State<ForgotPasswordView> {
                 child: SizedBox(
                     width: resWidth(AppSize.s282, sWidth),
                     height: AppSize.s50,
-                    child: ValueListenableBuilder(
-                      valueListenable: _isEnabled,
-                      builder: (context, isEnabled, child) =>
-                          ElevatedButton(
-                              onPressed:(){
+                    child: ElevatedButton(
+                        onPressed:(){
                          _navigationService.navigateReplacementTo(Routes.verifyyouridentity);
-                              },
-                              child: Text(
-                                AppStrings.sendmemail,
-                                style: getBoldStyle(
-                                    color: ColorManager.white,
-                                    fontSize: FontSize.s16),
-                              )),
-                    ))),
+                        },
+                        child: Text(
+                          AppStrings.sendmemail,
+                          style: getBoldStyle(
+                              color: ColorManager.white,
+                              fontSize: FontSize.s16),
+                        )))),
           ],
         ),
       ),
     );
-  }
-
-  @override
-  void dispose() {
-    _timer?.cancel();
-    super.dispose();
   }
 }

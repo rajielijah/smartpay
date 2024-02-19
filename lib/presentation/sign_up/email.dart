@@ -12,6 +12,7 @@ import '../../app/function.dart';
 import '../../app/navigation_services.dart';
 import '../../app/sizes.dart';
 import '../common/state_renderer/state_render_impl.dart';
+import '../resources/assets_manager.dart';
 import '../resources/color_manager.dart';
 import '../resources/font_manager.dart';
 import '../resources/routes_manager.dart';
@@ -78,13 +79,29 @@ class _EmailViewState extends State<EmailView> {
           statusBarBrightness: Brightness.dark,
           statusBarIconBrightness: Brightness.dark,
             ),
-      leading: IconButton(
-        alignment: Alignment.centerRight,
-        onPressed: () {
-          // _viewModel.inputState.add(null);
-          _navigationService.navigateReplacementTo(Routes.loginRoute);
-        },
-        icon: Icon(Icons.arrow_back_ios, color: ColorManager.black  ,)),
+       leading: IconButton(
+                alignment: Alignment.centerRight,
+                onPressed: () {
+                  // _viewModel.inputState.add(null);
+                  _navigationService.navigateReplacementTo(Routes.loginRoute);
+                },
+                icon: Container(
+                  height: AppSize.s40,
+                  width: AppSize.s40,
+                  decoration: BoxDecoration(
+                    border:  Border.all(color: ColorManager.greyBorder),
+                    borderRadius: BorderRadius.circular(AppSize.s12) ,
+                   ),
+                  child: Padding(
+                     padding: EdgeInsets.only(
+                left: resWidth(AppSize.s4, sWidth),
+                ),
+                    child: Align(
+                      alignment: Alignment.center,
+                      child: Icon(Icons.arrow_back_ios, 
+                      size: AppSize.s14,
+                      color: ColorManager.primaryButtonColor,)),
+                  ))),
       ),
        backgroundColor: ColorManager.white,
         body: StreamBuilder<FlowState>(
@@ -109,10 +126,32 @@ Widget _getContentWidget() {
              padding: EdgeInsets.only(
                 left: resWidth(AppSize.s24, sWidth),
                 right: resWidth(AppSize.s24, sWidth)),
+            child: Row(
+              children: [
+                Align(
+                  alignment: Alignment.topLeft,
+                  child: Text(
+                    AppStrings.create,
+                    style: getSemiBoldStyle(
+                    color: ColorManager.black, fontSize: FontSize.s24),textAlign: TextAlign.center,
+                  ),
+                ),
+                Text(
+                    AppStrings.smartpay,
+                    style: getSemiBoldStyle(
+                    color: ColorManager.greenbase, fontSize: FontSize.s24),textAlign: TextAlign.center,
+                  ),
+              ],
+            ),
+          ),
+           Padding(
+             padding: EdgeInsets.only(
+                left: resWidth(AppSize.s24, sWidth),
+                right: resWidth(AppSize.s24, sWidth)),
             child: Align(
               alignment: Alignment.topLeft,
               child: Text(
-                AppStrings.create,
+                AppStrings.account,
                 style: getSemiBoldStyle(
                 color: ColorManager.black, fontSize: FontSize.s24),textAlign: TextAlign.center,
               ),
@@ -194,7 +233,45 @@ Widget _getContentWidget() {
                 },
               )),
             SizedBox(
-            height: resHeight(AppSize.s65, sHeight),
+            height: resHeight(AppSize.s35, sHeight),
+          ),
+          Center(
+            child: Text(AppStrings.or, 
+          style: getRegularStyle(color: ColorManager.textColor),
+          )),      
+           SizedBox(
+            height: resHeight(AppSize.s35, sHeight),
+          ),
+          Padding(
+            padding: EdgeInsets.only(
+              left: resWidth(AppSize.s24, sWidth),
+              right: resWidth(AppSize.s24, sWidth)),
+            child: Row(
+              children: [
+                Container(
+                  height: resHeight(AppSize.s56, sHeight),
+                  width: resWidth(AppSize.s155, sWidth),
+                  decoration: BoxDecoration(
+                      border:  Border.all(color: ColorManager.greyBorder),
+                      borderRadius: BorderRadius.circular(AppSize.s12) ,
+                     ),
+                   child: Image.asset(ImageAssets.google),  
+                ),
+                SizedBox(width: resWidth(AppSize.s12, sWidth),),
+                 Container(
+                  height: resHeight(AppSize.s56, sHeight),
+                  width: resWidth(AppSize.s155, sWidth),
+                  decoration: BoxDecoration(
+                      border:  Border.all(color: ColorManager.greyBorder),
+                      borderRadius: BorderRadius.circular(AppSize.s12) ,
+                     ),
+                    child: Image.asset(ImageAssets.apple),  
+                )
+              ],
+            ),
+          ),    
+            SizedBox(
+            height: resHeight(AppSize.s95, sHeight),
           ),
           Center(
             child: Row(

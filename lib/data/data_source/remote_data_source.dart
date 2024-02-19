@@ -1,5 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:smartpay/models/authentication_models/sign_up_model.dart';
+import 'package:smartpay/models/message_model.dart';
 
 import '../../models/authentication_models/email_login.dart';
 import '../network/app_api.dart';
@@ -10,6 +11,8 @@ abstract class RemoteDataSource {
   Future<SignUp> email(EmailRequest emailRequest);
   Future<VerifyEmail> verifyEmail(VerifyEmailRequest verifyEmailRequest);
   Future<Register> register(RegisterRequest registerRequest);
+  Future<Message> dashboard();
+
 
 
 }
@@ -44,5 +47,10 @@ class RemoteDataSourceImplementer implements RemoteDataSource {
  Future<Register> register(RegisterRequest registerRequest) async {
     return await _appServiceClient.register(
        registerRequest.full_name, registerRequest.email, registerRequest.password, registerRequest.device_name, registerRequest.username, registerRequest.country);
+  }
+  
+  @override
+  Future<Message> dashboard() async{
+    return await _appServiceClient.dashboard();
   }
 }

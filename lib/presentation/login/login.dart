@@ -87,16 +87,32 @@ class _LoginViewState extends State<LoginView> {
           statusBarBrightness: Brightness.dark,
           statusBarIconBrightness: Brightness.dark,
             ),
-          leading: IconButton(
+         leading: IconButton(
                 alignment: Alignment.centerRight,
                 onPressed: () {
                   // _viewModel.inputState.add(null);
                   _navigationService.navigateReplacementTo(Routes.landingPageRoute);
                 },
-                icon: Icon(Icons.arrow_back_ios, color: ColorManager.black  ,)),
+                icon: Container(
+                  height: AppSize.s40,
+                  width: AppSize.s40,
+                  decoration: BoxDecoration(
+                    border:  Border.all(color: ColorManager.greyBorder),
+                    borderRadius: BorderRadius.circular(AppSize.s12) ,
+                   ),
+                  child: Padding(
+                     padding: EdgeInsets.only(
+                left: resWidth(AppSize.s4, sWidth),
+                ),
+                    child: Align(
+                      alignment: Alignment.center,
+                      child: Icon(Icons.arrow_back_ios, 
+                      size: AppSize.s14,
+                      color: ColorManager.primaryButtonColor,)),
+                  ))),
               ),
            backgroundColor: ColorManager.white,
-          body: StreamBuilder<FlowState>(
+           body: StreamBuilder<FlowState>(
             stream: _viewModel.outputState,
             builder: (context, snapshot) {
               return snapshot.data
@@ -113,13 +129,8 @@ class _LoginViewState extends State<LoginView> {
     return Form(
       key: _formKey,
       child: ListView(
-        // crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-         
           SizedBox(height: resHeight(AppSize.s30, sHeight)),
-          SizedBox(
-            height: resHeight(AppSize.s14, sHeight),
-          ),
           Padding(
              padding: EdgeInsets.only(
                 left: resWidth(AppSize.s24, sWidth),
@@ -133,16 +144,16 @@ class _LoginViewState extends State<LoginView> {
               ),
             ),
           ),
-          SizedBox(height: resHeight(AppSize.s4, sHeight)),
+          SizedBox(height: resHeight(AppSize.s14, sHeight)),
             Padding(
                padding: EdgeInsets.only(
-                left: resWidth(AppSize.s24, sWidth),
+                left: resWidth(AppSize.s20, sWidth),
                 right: resWidth(AppSize.s24, sWidth)),
               child: Align(
               alignment: Alignment.topLeft,
                 child: Text(
                 AppStrings.welcome,
-                style: getMediumStyle(
+                style: getRegularStyle(
                   color: ColorManager.textColor, fontSize: 16),textAlign: TextAlign.center,
                         ),
               ),
@@ -244,17 +255,13 @@ class _LoginViewState extends State<LoginView> {
                         ),
                       ),
                         hintText: AppStrings.hintPassword,
-                        // labelText: AppStrings.password,
-                        // errorText: (snapshot.data ?? true)
-                        //     ? null
-                        //     : AppStrings.passwordError
-                            ),
+                    ),
                   );
                 });
               },
             ),
           ),
-          SizedBox(height: resHeight(AppSize.s16, sHeight)),
+          SizedBox(height: resHeight(AppSize.s10, sHeight)),
           Padding(
             padding: EdgeInsets.only(
                 left: resWidth(AppSize.s24, sWidth),
@@ -263,7 +270,7 @@ class _LoginViewState extends State<LoginView> {
               alignment: Alignment.topLeft,
               child: TextButton(
                 onPressed: () {
-                  _navigationService.navigateReplacementTo(Routes.forgetpassword);
+                  _navigationService.navigateReplacementTo(Routes.forgotPassword);
                 },
                 child: Text(AppStrings.forgetPassword,
                     style: getBoldStyle(
@@ -272,7 +279,7 @@ class _LoginViewState extends State<LoginView> {
               ),
             ),
           ),
-          SizedBox(height: resHeight(AppSize.s35, sHeight)),
+          SizedBox(height: resHeight(AppSize.s10, sHeight)),
           Padding(
               padding: EdgeInsets.only(
                   left: resWidth(AppSize.s24, sWidth),
@@ -306,9 +313,46 @@ class _LoginViewState extends State<LoginView> {
                   );
                 },
               )),
-          
+           SizedBox(
+            height: resHeight(AppSize.s35, sHeight),
+          ),
+          Center(
+            child: Text(AppStrings.or, 
+          style: getRegularStyle(color: ColorManager.textColor),
+          )),      
+           SizedBox(
+            height: resHeight(AppSize.s35, sHeight),
+          ),
+          Padding(
+            padding: EdgeInsets.only(
+              left: resWidth(AppSize.s24, sWidth),
+              right: resWidth(AppSize.s24, sWidth)),
+            child: Row(
+              children: [
+                Container(
+                  height: resHeight(AppSize.s56, sHeight),
+                  width: resWidth(AppSize.s155, sWidth),
+                  decoration: BoxDecoration(
+                      border:  Border.all(color: ColorManager.greyBorder),
+                      borderRadius: BorderRadius.circular(AppSize.s12) ,
+                     ),
+                   child: Image.asset(ImageAssets.google),  
+                ),
+                SizedBox(width: resWidth(AppSize.s12, sWidth),),
+                 Container(
+                  height: resHeight(AppSize.s56, sHeight),
+                  width: resWidth(AppSize.s155, sWidth),
+                  decoration: BoxDecoration(
+                      border:  Border.all(color: ColorManager.greyBorder),
+                      borderRadius: BorderRadius.circular(AppSize.s12) ,
+                     ),
+                    child: Image.asset(ImageAssets.apple),  
+                )
+              ],
+            ),
+          ),    
           SizedBox(
-            height: resHeight(AppSize.s65, sHeight),
+            height: resHeight(AppSize.s115, sHeight),
           ),
           Center(
             child: Row(
