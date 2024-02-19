@@ -18,6 +18,10 @@ class AppPreferences {
 
   AppPreferences(this._sharedPreferences);
 
+    Future<void> setUserEmail(String userEmail) async {
+    _sharedPreferences.setString(PREFS_KEY_USER_EMAIL, userEmail);
+  }
+
     Future<void> setOnBoardingScreenViewed() async {
     _sharedPreferences.setBool(PREFS_KEY_ONBOARDING_SCREEN, true);
   }

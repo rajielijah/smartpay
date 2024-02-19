@@ -1,7 +1,7 @@
 class SignUp {
   SignUpData? data;
   String? message;
-  String? status;
+  bool? status;
 
   SignUp({this.data, this.message, this.status});
 
@@ -44,7 +44,7 @@ class SignUpData {
 class VerifyEmail {
   VerifyEmailData? data;
   String? message;
-  String? status;
+  bool? status;
 
   VerifyEmail({this.data, this.message, this.status});
 
@@ -86,7 +86,7 @@ class VerifyEmailData {
 class Register {
   RegisterData? data;
   String? message;
-  String? status;
+  bool? status;
 
   Register({this.data, this.message, this.status});
 

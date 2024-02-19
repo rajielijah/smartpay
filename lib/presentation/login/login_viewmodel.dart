@@ -2,21 +2,26 @@
 
 import 'dart:async';
 
+import '../../app/app_prefs.dart';
+import '../../app/di.dart';
 import '../../app/function.dart';
+import '../../app/navigation_services.dart';
 import '../../domain/usecase/login_usecase.dart';
 import '../base/baseviewmodel.dart';
 import '../common/freezed_data_class.dart';
 import '../common/state_renderer/state_render_impl.dart';
 import '../common/state_renderer/state_rendere.dart';
+import '../resources/routes_manager.dart';
 
 class LoginViewModel extends BaseViewModel 
 with LoginViewModelInputs, LoginViewModelOutputs {
 
-    // final AppPreferences _appPreferences = instance<AppPreferences>();
+  final AppPreferences _appPreferences = instance<AppPreferences>();
 
   final StreamController _userNameStreamController = StreamController<String>.broadcast();
   final StreamController _passwordStreamController = StreamController<String>.broadcast();
   final StreamController _isAllInputsValidStreamController = StreamController<void>.broadcast();
+  final NavigationService _navigationService = instance<NavigationService>();
 
   StreamController isUserLoggedInSuccessfullyStreamController = StreamController<String>();
 
@@ -58,15 +63,18 @@ with LoginViewModelInputs, LoginViewModelOutputs {
     (await _loginUseCase
         .execute(LoginUseCaseInput(loginObject.email, loginObject.password)))
         .fold(
-            (failure) => {
+            (failure)  {
           // left -> failure
           inputState.add(ErrorState(
-              StateRendererType.POPUP_ERROR_STATE, failure.message))
+              StateRendererType.POPUP_ERROR_STATE, failure.message));
             },
             (data) async {
-          // right -> success (data)
-          inputState.add(ContentState());
+           // right -> success (data)
+              inputState.add(ContentState());
+              _appPreferences.setUserEmail(loginObject.email);
           // navigate to main screen after the login
+              isUserLoggedInSuccessfullyStreamController.add("");
+             
         });
   }
 

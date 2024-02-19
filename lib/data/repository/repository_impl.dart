@@ -21,22 +21,22 @@ class RepositoryImpl extends Repository {
   RepositoryImpl(this._remoteDataSource);
 
   @override
-  Future<Either<Failure, AuthenticationBase>> login(LoginRequest loginRequest) async {
+  Future<Either<Failure, LoginModel>> login(LoginRequest loginRequest) async {
      if (await checkInternetConnectivity()) {
       try {
         // its safe to call the API
         final response = await _remoteDataSource.login(loginRequest);
 
-        if (response.code == ApiInternalStatus.SUCCESS) // success
+        if (response.status == ApiInternalStatus.TRUE) // success
             {
               _appPreferences.getdevice_name();
           // return data (success)
           // return right
-          return Right(response.toDomain());
+          return Right(response);
         } else {
           // return biz logic error
           // return left
-          return Left(Failure(int.parse(response.code ?? "0"),
+          return Left(Failure(int.parse(response.message ?? "0"),
               response.message ?? ResponseMessage.DEFAULT));
         }
       } catch (error) {
@@ -44,7 +44,8 @@ class RepositoryImpl extends Repository {
             .handle(error)
             .failure));
       }
-    } else {
+    }
+     else {
       // return connection error
       return Left(DataSource.NO_INTERNET_CONNECTION.getFailure());
     }
@@ -73,7 +74,7 @@ class RepositoryImpl extends Repository {
         } else {
           // return biz logic error
           // return left
-          return Left(Failure(int.parse(response.status ?? "0"),
+          return Left(Failure(int.parse(response.message ?? "0"),
               response.message ?? ResponseMessage.DEFAULT));
         }
       } catch (error) {
@@ -103,7 +104,7 @@ class RepositoryImpl extends Repository {
         } else {
           // return biz logic error
           // return left
-          return Left(Failure(int.parse(response.status ?? "0"),
+          return Left(Failure(int.parse(response.message ?? "0"),
               response.message ?? ResponseMessage.DEFAULT));
         }
       } catch (error) {
@@ -133,7 +134,7 @@ class RepositoryImpl extends Repository {
         } else {
           // return biz logic error
           // return left
-          return Left(Failure(int.parse(response.status ?? "0"),
+          return Left(Failure(int.parse(response.message ?? "0"),
               response.message ?? ResponseMessage.DEFAULT));
         }
       } catch (error) {

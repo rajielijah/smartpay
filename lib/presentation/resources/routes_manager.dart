@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:smartpay/models/authentication_models/sign_up_model.dart';
 import 'package:smartpay/presentation/dashboard/dashboard.dart';
 import 'package:smartpay/presentation/forgetpassword/forget_password.dart';
 import 'package:smartpay/presentation/onboarding/onbaording.dart';
 import 'package:smartpay/presentation/resources/strings_manager.dart';
+import 'package:smartpay/presentation/sign_up/email.dart';
 import 'package:smartpay/presentation/sign_up/register.dart';
+import 'package:smartpay/presentation/sign_up/verify_email.dart';
 
 import '../../app/di.dart';
 import '../login/login.dart';
@@ -61,7 +64,7 @@ class RouteGenerator {
            case Routes.verifyyouridentity:
         return MaterialPageRoute(builder: (context) {
           WidgetUtils().init(context);
-          return const ForgotPasswordView();
+          return const OtpView();
         }
         );
          case Routes.forgetpassword:
@@ -73,7 +76,7 @@ class RouteGenerator {
          case Routes.signUpRoute:
         return MaterialPageRoute(builder: (context) {
           WidgetUtils().init(context);
-          return const ForgotPasswordView();
+          return const EmailView();
         }
         );
          case Routes.register:

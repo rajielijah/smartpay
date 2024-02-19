@@ -108,7 +108,7 @@ class _OtpViewState extends State<OtpView> {
                 child: Text(
                   AppStrings.verify,
                   style: getSemiBoldStyle(
-                      color: ColorManager.secondary, fontSize: FontSize.s26),
+                      color: ColorManager.black, fontSize: FontSize.s24),
                 ),
               ),
             ),

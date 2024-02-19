@@ -21,7 +21,7 @@ class _AppServiceClient implements AppServiceClient {
   String? baseUrl;
 
   @override
-  Future<AuthenticationBaseResponse> login(
+  Future<LoginModel> login(
     String email,
     String password,
     String device_name,
@@ -35,7 +35,7 @@ class _AppServiceClient implements AppServiceClient {
       'device_name': device_name,
     };
     final _result = await _dio.fetch<Map<String, dynamic>>(
-        _setStreamType<AuthenticationBaseResponse>(Options(
+        _setStreamType<LoginModel>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
@@ -51,7 +51,7 @@ class _AppServiceClient implements AppServiceClient {
               _dio.options.baseUrl,
               baseUrl,
             ))));
-    final value = AuthenticationBaseResponse.fromJson(_result.data!);
+    final value = LoginModel.fromJson(_result.data!);
     return value;
   }
 
@@ -85,7 +85,7 @@ class _AppServiceClient implements AppServiceClient {
   @override
   Future<VerifyEmail> verifyEmail(
     String email,
-    int token,
+    String token,
   ) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};

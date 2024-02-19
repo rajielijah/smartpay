@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:flutter/services.dart';
 import 'package:smartpay/presentation/sign_up/sign_up_viewmodel.dart';
 
@@ -44,6 +45,10 @@ class _EmailViewState extends State<EmailView> {
 
     _emailController
       .addListener(() => _viewModel.setEmail(_emailController.text));
+
+      SchedulerBinding.instance.addPostFrameCallback((_) {
+        _navigationService.navigateReplacementTo(Routes.verifyyouridentity);
+      }); 
   }
 
   @override
@@ -151,7 +156,7 @@ Widget _getContentWidget() {
                   left: resWidth(AppSize.s24, sWidth),
                   right: resWidth(AppSize.s24, sWidth)),
               child: StreamBuilder<bool>(
-                stream: _viewModel.outputIsAllInputsValid,
+                stream: _viewModel.outputIsEmailValid,
                 builder: (context, snapshot) {
                   return SizedBox(
                     width: resWidth(AppSize.s241, sWidth),

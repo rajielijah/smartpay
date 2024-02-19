@@ -60,12 +60,9 @@ class _LoginViewState extends State<LoginView> {
     _viewModel.isUserLoggedInSuccessfullyStreamController.stream
         .listen((token) {
       // navigate to dashboard
-      token.toString() == "skip" ?
-      SchedulerBinding.instance.addPostFrameCallback((_) {
+     SchedulerBinding.instance.addPostFrameCallback((_) {
+        resetModules();
         _navigationService.navigateReplacementTo(Routes.dashboard);
-      }) :
-      SchedulerBinding.instance.addPostFrameCallback((_) {
-        _navigationService.navigateReplacementTo(Routes.otpRoute);
       });
     });
   }

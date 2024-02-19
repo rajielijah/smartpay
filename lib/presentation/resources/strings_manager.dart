@@ -35,6 +35,10 @@ class AppStrings {
   static const String otpDesc = "We send a code to ( *****@mail.com ). Enter it here to verify your identity";
   static const String resendOtp = "Resend Code 30 secs";
   static const String otpError = "Invalid OTP";
+  static const String yourself = "Hey there! tell us a bit about yourself";
+
+
+  
 
 
 

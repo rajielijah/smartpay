@@ -1,5 +1,7 @@
 import 'package:get_it/get_it.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:smartpay/domain/usecase/sign_up_usecase.dart';
+import 'package:smartpay/presentation/sign_up/sign_up_viewmodel.dart';
 
 import '../data/data_source/remote_data_source.dart';
 import '../data/network/app_api.dart';
@@ -59,7 +61,44 @@ initLoginModule() {
   }
 }
 
+initSignUpModule() {
+  if (!GetIt.I.isRegistered<SigUpUseCase>()) {
+    instance.registerFactory<SigUpUseCase>(() => SigUpUseCase(instance()));
+    instance.registerFactory<SignUpViewModel>(() => SignUpViewModel(instance()));
+  }
+}
 
 callModules() {
   initLoginModule();
+  initSignUpModule();
+}
+
+resetModules() {
+  resetDioFactory();
+  initSignUpModule();
+  initLoginModule();
+
+}
+
+void resetDioFactory() async{
+  final sharedPrefs = await SharedPreferences.getInstance();
+  instance.unregister<SharedPreferences>();
+  instance.registerLazySingleton<SharedPreferences>(() => sharedPrefs);
+
+  instance.unregister<DioFactory>();
+  instance.registerLazySingleton<DioFactory>(() => DioFactory());
+
+  instance.unregister<AppServiceClient>();
+  final dio = await instance<DioFactory>().getDio();
+  instance.registerLazySingleton<AppServiceClient>(() => AppServiceClient(dio));
+
+  // remote data source
+  instance.unregister<RemoteDataSource>();
+  instance.registerLazySingleton<RemoteDataSource>(
+          () => RemoteDataSourceImplementer(instance()));
+
+  // repository
+  instance.unregister<Repository>();
+  instance.registerLazySingleton<Repository>(
+          () => RepositoryImpl(instance()));
 }

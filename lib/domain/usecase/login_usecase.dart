@@ -13,14 +13,14 @@ import '../repository/repository.dart';
 import '../../app/di.dart';
 import 'base_usecase.dart';
 
-class LoginUseCase implements BaseUseCase<LoginUseCaseInput, AuthenticationBase> {
+class LoginUseCase implements BaseUseCase<LoginUseCaseInput, LoginModel> {
   final AppPreferences _appPreferences = instance<AppPreferences>();
   final Repository _repository;
 
   LoginUseCase(this._repository);
 
   @override
-  Future<Either<Failure, AuthenticationBase>> execute(
+  Future<Either<Failure, LoginModel>> execute(
       LoginUseCaseInput input) async {
     log("logging in with ${_appPreferences.getdevice_name()}");
     return await _repository.login(
