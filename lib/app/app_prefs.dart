@@ -8,6 +8,8 @@ const String PREFS_KEY_DEVICE_TOKEN = "PREFS_KEY_DEVICE_TOKEN";
 const String PREFS_KEY_ONBOARDING_SCREEN = "PREFS_KEY_ONBOARDING_SCREEN";
 const String PREFS_KEY_USER_EMAIL = "PREFS_KEY_USER_EMAIL";
 const String PREFS_KEY_NEW_EMAIL = "PREFS_KEY_NEW_EMAIL";
+const String PREFS_KEY_USERNAME = "PREFS_KEY_USERNAME";
+
 
 
 
@@ -39,6 +41,10 @@ class AppPreferences {
     return _sharedPreferences.getString(PREFS_KEY_DEVICE_TOKEN) ?? "frn29CE0M0Xmu00QEWiO_i:APA91bFl8ewytX60UWzm4loASQp-0wGfVDejCcKl62jShkupZQmH4Qf6LbkRl-uvh5w5cT6irSkc1uwEFsiswe2KrSqQE24-cWeY02oeisKnZ-TJuW33DsNsgaQFkdym4sofuaFST0hJ";
   }
 
+  Future<void> setUserName(String userName) async {
+    _sharedPreferences.setString(PREFS_KEY_USERNAME, userName);
+  }
+
 Future<bool> isOnBoardingScreenViewed() async {
     return _sharedPreferences.getBool(PREFS_KEY_ONBOARDING_SCREEN) ?? false;
   }  
@@ -48,5 +54,9 @@ Future<bool> isOnBoardingScreenViewed() async {
 
    String getNewEmail()  {
     return _sharedPreferences.getString(PREFS_KEY_NEW_EMAIL) ?? "";
+  }
+
+   String getUserName(){
+    return _sharedPreferences.getString(PREFS_KEY_USERNAME) ?? "";
   }
 }

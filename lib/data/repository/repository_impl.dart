@@ -93,7 +93,7 @@ class RepositoryImpl extends Repository {
   @override
   Future<Either<Failure, Register>> register(RegisterRequest registerRequest) async {
     if (await checkInternetConnectivity()) {
-      try {
+      // try {
         // its safe to call the API
         final response = await _remoteDataSource.register(registerRequest);
 
@@ -109,12 +109,14 @@ class RepositoryImpl extends Repository {
           return Left(Failure(int.parse(response.message ?? "0"),
               response.message ?? ResponseMessage.DEFAULT));
         }
-      } catch (error) {
-        return (Left(ErrorHandler
-            .handle(error)
-            .failure));
-      }
-    } else {
+      } 
+    //   catch (error) {
+    //     return (Left(ErrorHandler
+    //         .handle(error)
+    //         .failure));
+    //   }
+    // } 
+    else {
       // return connection error
       return Left(DataSource.NO_INTERNET_CONNECTION.getFailure());
     }
@@ -172,7 +174,6 @@ class RepositoryImpl extends Repository {
         }
       } 
       catch (error) {
-        print("Here is some error$error");
         return (Left(ErrorHandler
             .handle(error)
             .failure));

@@ -27,14 +27,14 @@ class SigUpUseCase implements BaseUseCase<SignUpUsecaseInput, SignUp> {
 
 class RegisterUsecaseInput {
   String full_name;
+  String username;
   String email;
+  String country;
   String password;
   String device_name;
-  String username;
-  String country;
 
 
-  RegisterUsecaseInput(this.full_name, this.email, this.password, this.device_name, this.username, this.country);
+  RegisterUsecaseInput(this.full_name, this.username, this.email, this.country,this.password, this.device_name, );
 }
 
 

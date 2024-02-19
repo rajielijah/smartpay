@@ -117,23 +117,23 @@ class _AppServiceClient implements AppServiceClient {
 
   @override
   Future<Register> register(
-    String fullName,
+    String username,
     String email,
     String password,
-    String device_name,
-    String username,
     String country,
+    String device_name,
+    String full_name,
   ) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     final _data = {
-      'fullName': fullName,
+      'username': username,
       'email': email,
       'password': password,
-      'device_name': device_name,
-      'username': username,
       'country': country,
+      'device_name': device_name,
+      'full_name': full_name,
     };
     final _result =
         await _dio.fetch<Map<String, dynamic>>(_setStreamType<Register>(Options(

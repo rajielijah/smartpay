@@ -31,6 +31,8 @@ with SignUpViewModelInputs, SignUpViewModelOutputs {
   StreamController<String>();
 
   StreamController isEmailVerifiedSuccessfullyStreamController = StreamController<String>();
+  StreamController isRegisteredSuccessfullyStreamController = StreamController<String>();
+
 
   
     var signupObject = SignUpObject("", "","", "","", "", "");
@@ -99,7 +101,6 @@ with SignUpViewModelInputs, SignUpViewModelOutputs {
           // right -> success (data)
           inputState.add(ContentState());
          await  _appPreferences.setNewEmail(signupObject.email);
-         print(_appPreferences.getNewEmail());
           isEmailVerifiedSuccessfullyStreamController.add("");
           // navigate to main screen after the login
         });
@@ -128,8 +129,8 @@ with SignUpViewModelInputs, SignUpViewModelOutputs {
    @override
   register() async{
     inputState.add(LoadingState(stateRendererType: StateRendererType.POPUP_LOADING_STATE));
-    (await _signUpUseCase.register(RegisterUsecaseInput(signupObject.full_name, _appPreferences.getUserEmail(), signupObject.password,
-   "web",  signupObject.username, signupObject.country, )))
+    (await _signUpUseCase.register(RegisterUsecaseInput(signupObject.full_name,  signupObject.username, _appPreferences.getUserEmail(),
+     signupObject.country,  signupObject.password, "web", )))
         .fold(
             (failure) => {
           // left -> failure
@@ -139,7 +140,9 @@ with SignUpViewModelInputs, SignUpViewModelOutputs {
             (data) async {
           // right -> success (data)
           inputState.add(ContentState());
+          await _appPreferences.setUserName(signupObject.username);
           // navigate to main screen after the login
+           isRegisteredSuccessfullyStreamController.add('');
         });
   }
   

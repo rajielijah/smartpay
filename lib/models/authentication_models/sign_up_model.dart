@@ -108,7 +108,7 @@ class Register {
 }
 
 class RegisterData {
-  int? token;
+  String? token;
   UserData? userData;
   RegisterData(
       {

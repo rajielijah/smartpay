@@ -5,6 +5,7 @@ import 'package:smartpay/presentation/resources/font_manager.dart';
 import 'package:smartpay/presentation/resources/strings_manager.dart';
 import 'package:smartpay/presentation/resources/styles_manager.dart';
 
+import '../../app/app_prefs.dart';
 import '../../app/di.dart';
 import '../../app/navigation_services.dart';
 import '../../app/sizes.dart';
@@ -24,6 +25,8 @@ class _CongratulationsState extends State<Congratulations> {
   double sHeight = WidgetUtils.screenHeight;
   double sWidth = WidgetUtils.screenWidth;
   final NavigationService _navigationService = instance<NavigationService>();
+  final AppPreferences _appPreferences = instance<AppPreferences>();
+
   
   @override
   Widget build(BuildContext context) {
@@ -51,7 +54,7 @@ class _CongratulationsState extends State<Congratulations> {
       ),
       SizedBox(height: resHeight(AppSize.s23, sHeight),),
       Text(
-        AppStrings.congrats,
+        "${AppStrings.congrats} ${_appPreferences.getUserName()}",
         style: getBoldStyle(color: ColorManager.black, fontSize: FontSize.s24),
       ),
       SizedBox(height: resHeight(AppSize.s13, sHeight),),

@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:smartpay/app/di.dart';
 import 'package:smartpay/app/sizes.dart';
-import 'package:smartpay/presentation/dashboard/dashboard_viewmodel.dart';
+// import 'package:smartpay/presentation/dashboard/dashboard_viewmodel.dart';
 import 'package:smartpay/presentation/resources/assets_manager.dart';
 import 'package:smartpay/presentation/resources/color_manager.dart';
 import 'package:smartpay/presentation/resources/routes_manager.dart';
@@ -28,7 +28,7 @@ class _DashboardState extends State<Dashboard> {
   double sWidth = WidgetUtils.screenWidth;
   final NavigationService _navigationService = instance<NavigationService>();
 
-  final DashboardViewModel _viewModel = instance<DashboardViewModel>();
+  // final DashboardViewModel _viewModel = instance<DashboardViewModel>();
 
   final List<String> _quotes = [
     "Very little is needed to make a happy life. - Marcus Aurelius",

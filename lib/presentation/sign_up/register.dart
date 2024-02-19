@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:flutter/services.dart';
 import 'package:smartpay/presentation/sign_up/sign_up_viewmodel.dart';
 
@@ -58,6 +59,14 @@ class _RegisterViewState extends State<RegisterView> {
       .addListener(() => _viewModel.setFullName(_fullNameController.text));
     _passwordController
       .addListener(() => _viewModel.setPassword(_passwordController.text));
+
+      _viewModel.isRegisteredSuccessfullyStreamController.stream
+        .listen((token) {
+          SchedulerBinding.instance.addPostFrameCallback((_) {
+        resetModules();
+        _navigationService.navigateReplacementTo(Routes.congratulations);
+      });
+        });
   }
 
    @override
@@ -358,8 +367,8 @@ class _RegisterViewState extends State<RegisterView> {
                               ((snapshot.data ?? false) && _isEnabled.value)
                                   ? () {
                                       _isEnabled.value = false;
-                                      // _viewModel.register();
-                                      _navigationService.navigateReplacementTo(Routes.congratulations);
+                                      _viewModel.register();
+                                      // _navigationService.navigateReplacementTo(Routes.congratulations);
                                       _timer = Timer(
                                           const Duration(milliseconds: 200),
                                           () => _isEnabled.value = true);
@@ -390,7 +399,16 @@ class _RegisterViewState extends State<RegisterView> {
     super.dispose();
   }
 
-  final List<String> _countries = ['USA', 'Canada', 'Singapore', 'Germany',  'China', 'Netherland', 'France', 'Italy'];
+  final Map<String, String> _countries = {
+    'USA': 'US',
+    'Canada': 'CA',
+    'Mexico': 'MX',
+    'Germany': 'DE',
+    'France': 'FR',
+    'Italy': 'IT',
+    // Add more countries and their codes as needed
+  };
+
  void _showCountryPicker() {
   showModalBottomSheet(
     context: context,
@@ -408,9 +426,10 @@ class _RegisterViewState extends State<RegisterView> {
         child: ListView.builder(
           itemCount: _countries.length,
           itemBuilder: (BuildContext context, int index) {
+            String countryName = _countries.keys.elementAt(index);
             return ListTile(
               title: Text(
-                _countries[index],
+                 countryName,
                 style: const TextStyle(
                   fontSize: AppSize.s18, // Customize font size
                   fontWeight: FontWeight.bold, // Change font weight
@@ -418,9 +437,9 @@ class _RegisterViewState extends State<RegisterView> {
               ),
               leading: const Icon(Icons.flag), 
               onTap: () {
-                // Set the country to the text field and pop the modal
-                _countryController.text = _countries[index];
-                Navigator.pop(context);
+                String countryCode = _countries[countryName]!;
+                  _countryController.text = countryCode;
+                  Navigator.pop(context);
               },
             );
           },
@@ -429,5 +448,12 @@ class _RegisterViewState extends State<RegisterView> {
     },
   );
 }
+String formatCountryName(String countryName) {
+    List<String> words = countryName.split(' ');
+    if (words.length == 1) {
+      return "$countryName Country";
+    }
+    return countryName;
+  }
 
   }

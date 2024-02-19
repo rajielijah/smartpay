@@ -36,12 +36,12 @@ abstract class AppServiceClient {
 
   @POST("/auth/register")
   Future<Register> register(
-      @Field("fullName") String fullName,
+      @Field("username") String username,
       @Field("email") String email,
       @Field("password") String password,
-      @Field("device_name") String device_name,
-      @Field("username") String username,
       @Field("country") String country,
+      @Field("device_name") String device_name,
+      @Field("full_name") String full_name,
       );
 
   @GET("/dashboard")
