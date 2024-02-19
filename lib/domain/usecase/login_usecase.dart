@@ -8,7 +8,6 @@ import '../../app/app_prefs.dart';
 import '../../data/network/failure.dart';
 import '../../data/request/request.dart';
 import '../../models/authentication_models/email_login.dart';
-import '../model/model.dart';
 import '../repository/repository.dart';
 import '../../app/di.dart';
 import 'base_usecase.dart';

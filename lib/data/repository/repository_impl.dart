@@ -1,8 +1,6 @@
 import 'package:dartz/dartz.dart';
-import 'package:smartpay/data/mapper/mapper.dart';
 import 'package:smartpay/data/network/failure.dart';
 import 'package:smartpay/data/request/request.dart';
-import 'package:smartpay/domain/model/model.dart';
 import 'package:smartpay/domain/repository/repository.dart';
 import 'package:smartpay/models/authentication_models/email_login.dart';
 import 'package:smartpay/models/authentication_models/sign_up_model.dart';

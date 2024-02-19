@@ -1,12 +1,10 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:flutter/scheduler.dart';
 
 import '../../app/di.dart';
 import '../../app/navigation_services.dart';
 import '../../app/sizes.dart';
-import '../common/state_renderer/state_render_impl.dart';
 import '../resources/assets_manager.dart';
 import '../resources/color_manager.dart';
 import '../resources/font_manager.dart';

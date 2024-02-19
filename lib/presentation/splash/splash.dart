@@ -3,7 +3,6 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-import '../../app/app_prefs.dart';
 import '../../app/di.dart';
 import '../../app/navigation_services.dart';
 import '../../app/sizes.dart';

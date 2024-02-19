@@ -4,7 +4,6 @@ import 'package:smartpay/models/authentication_models/sign_up_model.dart';
 import '../../models/authentication_models/email_login.dart';
 import '../network/app_api.dart';
 import '../request/request.dart';
-import '../responses/responses.dart';
 
 abstract class RemoteDataSource {
   Future<LoginModel> login(LoginRequest loginRequest);

@@ -5,7 +5,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:smartpay/presentation/sign_up/sign_up_viewmodel.dart';
 
-import '../../app/app_prefs.dart';
 import '../../app/di.dart';
 import '../../app/function.dart';
 import '../../app/navigation_services.dart';

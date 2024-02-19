@@ -2,7 +2,6 @@
 
 import 'package:dio/dio.dart';
 import 'package:retrofit/http.dart';
-import 'package:smartpay/data/responses/responses.dart';
 import 'package:smartpay/models/authentication_models/sign_up_model.dart';
 
 

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:smartpay/models/authentication_models/sign_up_model.dart';
 import 'package:smartpay/presentation/dashboard/dashboard.dart';
 import 'package:smartpay/presentation/forgetpassword/forget_password.dart';
 import 'package:smartpay/presentation/onboarding/onbaording.dart';
