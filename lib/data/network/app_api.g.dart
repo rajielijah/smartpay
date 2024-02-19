@@ -94,8 +94,8 @@ class _AppServiceClient implements AppServiceClient {
       'email': email,
       'token': token,
     };
-    final _result = await _dio.fetch<Map<String, dynamic>>(
-        _setStreamType<AuthenticationBaseResponse>(Options(
+    final _result = await _dio
+        .fetch<Map<String, dynamic>>(_setStreamType<VerifyEmail>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
@@ -135,8 +135,8 @@ class _AppServiceClient implements AppServiceClient {
       'username': username,
       'country': country,
     };
-    final _result = await _dio.fetch<Map<String, dynamic>>(
-        _setStreamType<AuthenticationBaseResponse>(Options(
+    final _result =
+        await _dio.fetch<Map<String, dynamic>>(_setStreamType<Register>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,

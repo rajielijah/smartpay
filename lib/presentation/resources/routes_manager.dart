@@ -3,6 +3,7 @@ import 'package:smartpay/presentation/dashboard/dashboard.dart';
 import 'package:smartpay/presentation/forgetpassword/forget_password.dart';
 import 'package:smartpay/presentation/onboarding/onbaording.dart';
 import 'package:smartpay/presentation/resources/strings_manager.dart';
+import 'package:smartpay/presentation/sign_up/register.dart';
 
 import '../../app/di.dart';
 import '../login/login.dart';
@@ -15,6 +16,7 @@ class Routes {
   static const String landingPageRoute = "/landingPage";
   static const String loginRoute = "/login";
   static const String otpRoute = "/otp";
+  static const String register = "/register";
   static const String dashboard = "/dashboard";
   static const String verifyyouridentity = "/verifyyouridentity";
   static const String forgetpassword = "/forgetpassword";
@@ -72,6 +74,12 @@ class RouteGenerator {
         return MaterialPageRoute(builder: (context) {
           WidgetUtils().init(context);
           return const ForgotPasswordView();
+        }
+        );
+         case Routes.register:
+        return MaterialPageRoute(builder: (context) {
+          WidgetUtils().init(context);
+          return const RegisterView();
         }
         );
       default:

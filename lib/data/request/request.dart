@@ -15,7 +15,7 @@ class EmailRequest {
 
 class VerifyEmailRequest {
   String email;
-  int token;
+  String token;
 
   VerifyEmailRequest(this.email, this.token);
 }

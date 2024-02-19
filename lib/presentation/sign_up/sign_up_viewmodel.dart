@@ -2,7 +2,13 @@
 
 import 'dart:async';
 
+import 'package:smartpay/domain/usecase/sign_up_usecase.dart';
 import 'package:smartpay/presentation/base/baseviewmodel.dart';
+import 'package:smartpay/presentation/common/freezed_data_class.dart';
+
+import '../../app/function.dart';
+import '../common/state_renderer/state_render_impl.dart';
+import '../common/state_renderer/state_rendere.dart';
 
 class SignUpViewModel extends BaseViewModel 
 with SignUpViewModelInputs, SignUpViewModelOutputs {
@@ -16,6 +22,15 @@ with SignUpViewModelInputs, SignUpViewModelOutputs {
   final StreamController _countryStreamController = StreamController<String>.broadcast();
 
   final StreamController _isAllInputsValidStreamController = StreamController<void>.broadcast();
+    StreamController isOtpVerifiedSuccessfullyStreamController =
+  StreamController<String>();
+  
+    var signupObject = SignUpObject("", "","", "","", "");
+
+  final SigUpUseCase _signUpUseCase;
+
+  SignUpViewModel(this._signUpUseCase);
+  
 
 
  @override
@@ -27,113 +42,219 @@ with SignUpViewModelInputs, SignUpViewModelOutputs {
     _countryStreamController.close();
     _isAllInputsValidStreamController.close();
     _passwordStreamController.close();
+    isOtpVerifiedSuccessfullyStreamController.close();
     inputState.close();
+  }
+
+     @override
+  void start() {
+    // view tells state renderer, please show the content of the screen
+    inputState.add(ContentState());
   }
   
   @override
-  // TODO: implement email
-  Sink get email => throw UnimplementedError();
+  Sink get inputEmail => _emailStreamController.sink;
   
   @override
-  // TODO: implement fullName
-  Sink get fullName => throw UnimplementedError();
+  Sink get inputFullName => _fullNameStreamController.sink;
   
   @override
-  // TODO: implement otp
-  Sink get otp => throw UnimplementedError();
+  Sink get inputOtp =>_otpStreamController.sink;
+
+  @override
+  Sink get inputUsername => _userNameStreamController.sink;
+
+ @override
+  Sink get inputPassword => _passwordStreamController.sink;
+
+
+    @override
+  Sink get inputIsAllInputValid => _isAllInputsValidStreamController.sink;
+
+
+
+  @override
+  email() async{
+    inputState.add(LoadingState(stateRendererType: StateRendererType.POPUP_LOADING_STATE));
+    (await _signUpUseCase.execute(SignUpUsecaseInput(signupObject.email)))
+        .fold(
+            (failure) => {
+          // left -> failure
+          inputState.add(ErrorState(
+              StateRendererType.POPUP_ERROR_STATE, failure.message))
+            },
+            (data) async {
+          // right -> success (data)
+          inputState.add(ContentState());
+          // navigate to main screen after the login
+        });
+  }
+  
+
+   @override
+  verifyEmail() async{
+    inputState.add(LoadingState(stateRendererType: StateRendererType.POPUP_LOADING_STATE));
+    (await _signUpUseCase.verifyEmail(VerifyEmailUsecaseInput(signupObject.email, signupObject.otp)))
+        .fold(
+            (failure) => {
+          // left -> failure
+          inputState.add(ErrorState(
+              StateRendererType.POPUP_ERROR_STATE, failure.message))
+            },
+            (data) async {
+          // right -> success (data)
+          inputState.add(ContentState());
+          // navigate to main screen after the login
+          isOtpVerifiedSuccessfullyStreamController.add("");
+        });
+  }
+  
+
+   @override
+  register() async{
+    inputState.add(LoadingState(stateRendererType: StateRendererType.POPUP_LOADING_STATE));
+    (await _signUpUseCase.register(RegisterUsecaseInput(signupObject.email, signupObject.password, signupObject.country,
+   "web", signupObject.fullName, signupObject.otp, signupObject.username )))
+        .fold(
+            (failure) => {
+          // left -> failure
+          inputState.add(ErrorState(
+              StateRendererType.POPUP_ERROR_STATE, failure.message))
+            },
+            (data) async {
+          // right -> success (data)
+          inputState.add(ContentState());
+          // navigate to main screen after the login
+        });
+  }
   
   @override
-  // TODO: implement outputIsAllInputsValid
-  Stream<bool> get outputIsAllInputsValid => throw UnimplementedError();
+  Stream<bool> get outputIsAllInputsValid => 
+  _isAllInputsValidStreamController.stream.map((_) => _isAllInputsValid());
   
   @override
-  // TODO: implement outputIsEmailValid
-  Stream<bool> get outputIsEmailValid => throw UnimplementedError();
+  Stream<bool> get outputIsEmailValid => _emailStreamController.stream
+    .map((email) => isEmailsValid(email));
   
   @override
-  // TODO: implement outputIsFullNameValid
-  Stream<bool> get outputIsFullNameValid => throw UnimplementedError();
+  Stream<bool> get outputIsFullNameValid => _fullNameStreamController.stream
+      .map((fullName) => isFullNameValid(fullName));
+  
+  
   
   @override
-  // TODO: implement outputIsOtplValid
-  Stream<bool> get outputIsOtplValid => throw UnimplementedError();
+  Stream<bool> get outputIsPasswordValid => _passwordStreamController.stream
+      .map((password) => _isPasswordValid(password));
+
   
   @override
-  // TODO: implement outputIsPasswordValid
-  Stream<bool> get outputIsPasswordValid => throw UnimplementedError();
+  Stream<bool> get outputIsUsernameValid => _userNameStreamController.stream
+      .map((userName) => _isUserNameValid(userName));
+
+
   
-  @override
-  // TODO: implement outputIsUsernameValid
-  Stream<bool> get outputIsUsernameValid => throw UnimplementedError();
-  
-  @override
-  // TODO: implement password
-  Sink get password => throw UnimplementedError();
+ 
   
   @override
   setCountry(String country) {
-    // TODO: implement setCountry
-    throw UnimplementedError();
+   inputCountry.add(country);
+    signupObject = signupObject.copyWith(country: country);
   }
   
   @override
   setEmail(String email) {
-    // TODO: implement setEmail
-    throw UnimplementedError();
+     inputEmail.add(email);
+    signupObject = signupObject.copyWith(email: email);
   }
   
   @override
   setFullName(String fullName) {
-    // TODO: implement setFullName
-    throw UnimplementedError();
+    inputFullName.add(fullName);
+    signupObject = signupObject.copyWith(fullName: fullName);
   }
   
   @override
-  setOtp(int otp) {
-    // TODO: implement setOtp
-    throw UnimplementedError();
+  setOtp(String otp) {
+    inputOtp.add(otp);
+    signupObject = signupObject.copyWith(otp: otp);
+    
   }
   
   @override
   setPassword(String password) {
-    // TODO: implement setPassword
-    throw UnimplementedError();
+     inputPassword.add(password);
+    signupObject = signupObject.copyWith(password: password);
   }
   
   @override
   setUsername(String username) {
-    // TODO: implement setUsername
-    throw UnimplementedError();
+    inputUsername.add(username);
+    signupObject = signupObject.copyWith(username: username);
+    _validate();
+    
+  }
+
+    bool _isPasswordValid(String password){
+    return password.isNotEmpty;
+  }
+
+    bool isFullNameValid(String fullName) {
+    return fullName.isNotEmpty; 
+  }
+
+   bool isEmailsValid(String email) {
+    return email.isNotEmpty &&(isEmailValid(email)); 
+  }
+  bool _isUserNameValid(String userName) {
+    return userName.isNotEmpty && (isEmailValid(userName) || (double.tryParse(userName) != null && userName.length == 11));
+  }
+  
+    bool _isAllInputsValid() {
+    return _isPasswordValid(signupObject.password) &&
+        _isUserNameValid(signupObject.email);
+  }
+  
+  
+
+  _validate() {
+    inputIsAllInputValid.add("null");
   }
   
   @override
-  void start() {
-    // TODO: implement start
-  }
+  Sink get inputCountry => _countryStreamController.sink;
+  
   
   @override
-  // TODO: implement username
-  Sink get username => throw UnimplementedError();
+  Stream<bool> get outputIsOtplValid => throw UnimplementedError();
+
 
 }
 
 
+
 abstract class SignUpViewModelInputs {
   setEmail(String email);
-  setOtp(int otp);
+  setOtp(String otp);
   setFullName(String fullName);
   setUsername(String username);
   setCountry(String country);
   setPassword(String password);
+  email();
+  verifyEmail();
+  register();
 
 
 // sinks
 
-  Sink get email;
-  Sink get otp;
-  Sink get fullName;
-  Sink get username;
-  Sink get password;
+  Sink get inputEmail;
+  Sink get inputOtp;
+  Sink get inputFullName;
+  Sink get inputUsername;
+  Sink get inputPassword;
+  Sink get inputCountry;
+
+  Sink get inputIsAllInputValid;
+
 
 }
 

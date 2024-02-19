@@ -148,3 +148,223 @@ abstract class _LoginObject implements LoginObject {
   _$$LoginObjectImplCopyWith<_$LoginObjectImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
+
+/// @nodoc
+mixin _$SignUpObject {
+  String get email => throw _privateConstructorUsedError;
+  String get password => throw _privateConstructorUsedError;
+  String get fullName => throw _privateConstructorUsedError;
+  String get username => throw _privateConstructorUsedError;
+  String get country => throw _privateConstructorUsedError;
+  String get otp => throw _privateConstructorUsedError;
+
+  @JsonKey(ignore: true)
+  $SignUpObjectCopyWith<SignUpObject> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $SignUpObjectCopyWith<$Res> {
+  factory $SignUpObjectCopyWith(
+          SignUpObject value, $Res Function(SignUpObject) then) =
+      _$SignUpObjectCopyWithImpl<$Res, SignUpObject>;
+  @useResult
+  $Res call(
+      {String email,
+      String password,
+      String fullName,
+      String username,
+      String country,
+      String otp});
+}
+
+/// @nodoc
+class _$SignUpObjectCopyWithImpl<$Res, $Val extends SignUpObject>
+    implements $SignUpObjectCopyWith<$Res> {
+  _$SignUpObjectCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? email = null,
+    Object? password = null,
+    Object? fullName = null,
+    Object? username = null,
+    Object? country = null,
+    Object? otp = null,
+  }) {
+    return _then(_value.copyWith(
+      email: null == email
+          ? _value.email
+          : email // ignore: cast_nullable_to_non_nullable
+              as String,
+      password: null == password
+          ? _value.password
+          : password // ignore: cast_nullable_to_non_nullable
+              as String,
+      fullName: null == fullName
+          ? _value.fullName
+          : fullName // ignore: cast_nullable_to_non_nullable
+              as String,
+      username: null == username
+          ? _value.username
+          : username // ignore: cast_nullable_to_non_nullable
+              as String,
+      country: null == country
+          ? _value.country
+          : country // ignore: cast_nullable_to_non_nullable
+              as String,
+      otp: null == otp
+          ? _value.otp
+          : otp // ignore: cast_nullable_to_non_nullable
+              as String,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$SignUpObjectImplCopyWith<$Res>
+    implements $SignUpObjectCopyWith<$Res> {
+  factory _$$SignUpObjectImplCopyWith(
+          _$SignUpObjectImpl value, $Res Function(_$SignUpObjectImpl) then) =
+      __$$SignUpObjectImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call(
+      {String email,
+      String password,
+      String fullName,
+      String username,
+      String country,
+      String otp});
+}
+
+/// @nodoc
+class __$$SignUpObjectImplCopyWithImpl<$Res>
+    extends _$SignUpObjectCopyWithImpl<$Res, _$SignUpObjectImpl>
+    implements _$$SignUpObjectImplCopyWith<$Res> {
+  __$$SignUpObjectImplCopyWithImpl(
+      _$SignUpObjectImpl _value, $Res Function(_$SignUpObjectImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? email = null,
+    Object? password = null,
+    Object? fullName = null,
+    Object? username = null,
+    Object? country = null,
+    Object? otp = null,
+  }) {
+    return _then(_$SignUpObjectImpl(
+      null == email
+          ? _value.email
+          : email // ignore: cast_nullable_to_non_nullable
+              as String,
+      null == password
+          ? _value.password
+          : password // ignore: cast_nullable_to_non_nullable
+              as String,
+      null == fullName
+          ? _value.fullName
+          : fullName // ignore: cast_nullable_to_non_nullable
+              as String,
+      null == username
+          ? _value.username
+          : username // ignore: cast_nullable_to_non_nullable
+              as String,
+      null == country
+          ? _value.country
+          : country // ignore: cast_nullable_to_non_nullable
+              as String,
+      null == otp
+          ? _value.otp
+          : otp // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$SignUpObjectImpl implements _SignUpObject {
+  _$SignUpObjectImpl(this.email, this.password, this.fullName, this.username,
+      this.country, this.otp);
+
+  @override
+  final String email;
+  @override
+  final String password;
+  @override
+  final String fullName;
+  @override
+  final String username;
+  @override
+  final String country;
+  @override
+  final String otp;
+
+  @override
+  String toString() {
+    return 'SignUpObject(email: $email, password: $password, fullName: $fullName, username: $username, country: $country, otp: $otp)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$SignUpObjectImpl &&
+            (identical(other.email, email) || other.email == email) &&
+            (identical(other.password, password) ||
+                other.password == password) &&
+            (identical(other.fullName, fullName) ||
+                other.fullName == fullName) &&
+            (identical(other.username, username) ||
+                other.username == username) &&
+            (identical(other.country, country) || other.country == country) &&
+            (identical(other.otp, otp) || other.otp == otp));
+  }
+
+  @override
+  int get hashCode => Object.hash(
+      runtimeType, email, password, fullName, username, country, otp);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$SignUpObjectImplCopyWith<_$SignUpObjectImpl> get copyWith =>
+      __$$SignUpObjectImplCopyWithImpl<_$SignUpObjectImpl>(this, _$identity);
+}
+
+abstract class _SignUpObject implements SignUpObject {
+  factory _SignUpObject(
+      final String email,
+      final String password,
+      final String fullName,
+      final String username,
+      final String country,
+      final String otp) = _$SignUpObjectImpl;
+
+  @override
+  String get email;
+  @override
+  String get password;
+  @override
+  String get fullName;
+  @override
+  String get username;
+  @override
+  String get country;
+  @override
+  String get otp;
+  @override
+  @JsonKey(ignore: true)
+  _$$SignUpObjectImplCopyWith<_$SignUpObjectImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}

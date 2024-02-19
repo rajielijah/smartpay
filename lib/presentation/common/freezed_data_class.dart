@@ -12,6 +12,14 @@ class LoginObject with _$LoginObject {
   factory LoginObject(String email, String password) = _LoginObject;
 }
 
+
+@freezed
+class SignUpObject with _$SignUpObject {
+  factory SignUpObject(String email, String password, String fullName, String username, 
+    String country, String otp  
+  ) = _SignUpObject;
+}
+
 // @freezed
 // class OtpObject with _$OtpObject{
 //   factory OtpObject(String otp, String otpVia) = _OtpObject;

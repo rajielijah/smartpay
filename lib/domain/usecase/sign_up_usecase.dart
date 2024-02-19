@@ -17,23 +17,39 @@ class SigUpUseCase implements BaseUseCase<SignUpUsecaseInput, SignUp> {
     return await _repository.email(EmailRequest(input.email));
   }
 
-    Future<Either<Failure, VerifyEmail>> verifyEmail(SignUpUsecaseInput input) async{
+    Future<Either<Failure, VerifyEmail>> verifyEmail(VerifyEmailUsecaseInput input) async{
     return await _repository.verifyEmail(VerifyEmailRequest(input.email, input.token));
   }
-      Future<Either<Failure, Register>> register(SignUpUsecaseInput input) async{
+      Future<Either<Failure, Register>> register(RegisterUsecaseInput input) async{
     return await _repository.register(RegisterRequest(input.email, input.password, input.country, input.fullName, input.username, input.device_name));
   }
 }
 
-class SignUpUsecaseInput {
+class RegisterUsecaseInput {
   String email;
   String password;
-  int token;
+  String token;
   String fullName;
   String country;
   String username;
   String device_name;
 
 
-  SignUpUsecaseInput(this.email, this.password, this.country, this.device_name, this.fullName, this.token, this.username);
+  RegisterUsecaseInput(this.email, this.password, this.country, this.device_name, this.fullName, this.token, this.username);
+}
+
+
+class SignUpUsecaseInput {
+  String email;
+  
+
+  SignUpUsecaseInput(this.email, );
+}
+
+class VerifyEmailUsecaseInput {
+  String email;
+  String token;
+  
+
+  VerifyEmailUsecaseInput(this.email, this.token);
 }

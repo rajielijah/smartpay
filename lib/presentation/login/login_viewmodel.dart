@@ -2,8 +2,6 @@
 
 import 'dart:async';
 
-import '../../app/app_prefs.dart';
-import '../../app/di.dart';
 import '../../app/function.dart';
 import '../../domain/usecase/login_usecase.dart';
 import '../base/baseviewmodel.dart';
