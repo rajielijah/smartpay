@@ -1,6 +1,9 @@
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
+
+
+//I tried to use the HTTP method to consume the API here but I keep getting StatusCode 500
 class DashboardService {
   Future<dynamic> fetchDashboard() async {
     final url = Uri.parse('https://mobile-test-2d7e555a4f85.herokuapp.com/api/v1/dashboard');

@@ -27,8 +27,7 @@ class _SplashViewState extends State<SplashView> {
   }
 
   _goNext() async {
-                    _navigationService.navigateReplacementTo(Routes.onBoardingRoute);
-             
+     _navigationService.navigateReplacementTo(Routes.onBoardingRoute);
   }
 
   @override

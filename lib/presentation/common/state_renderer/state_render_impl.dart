@@ -6,7 +6,6 @@ import 'package:smartpay/presentation/common/state_renderer/state_rendere.dart';
 
 import '../../../app/di.dart';
 import '../../../app/navigation_services.dart';
-import '../../../data/mapper/mapper.dart';
 import '../../resources/routes_manager.dart';
 import '../../resources/strings_manager.dart';
 
@@ -66,7 +65,7 @@ class ContentState extends FlowState {
   ContentState();
 
   @override
-  String getMessage() => EMPTY;
+  String getMessage() => '';
 
   @override
   StateRendererType getStateRendererType() =>
@@ -82,7 +81,7 @@ class ContentState2 extends FlowState {
   ContentState2();
 
   @override
-  String getMessage() => EMPTY;
+  String getMessage() => '';
 
   @override
   StateRendererType getStateRendererType() =>
@@ -122,7 +121,7 @@ class SuccessState extends FlowState {
   String message;
   String route;
 
-  SuccessState(this.message,{this.route = EMPTY});
+  SuccessState(this.message,{this.route = ''});
 
   @override
   String getMessage() => message;
@@ -223,7 +222,7 @@ extension FlowStateExtension on FlowState {
       ModalRoute.of(context)?.isCurrent != true;
 
   showPopUp(BuildContext context, StateRendererType stateRendererType,
-      String message,{String title = EMPTY}) {
+      String message,{String title = ''}) {
     WidgetsBinding.instance.addPostFrameCallback((_) => showDialog(
         context: context,
         barrierDismissible: false,
@@ -237,7 +236,7 @@ extension FlowStateExtension on FlowState {
         )));
   }
   showSnackBar(BuildContext context, StateRendererType stateRendererType,
-      String message,{String title = EMPTY}) {
+      String message,{String title = ''}) {
     WidgetsBinding.instance.addPostFrameCallback((_) =>
         ScaffoldMessenger.of(context).showSnackBar(SnackBar(
             backgroundColor: Colors.transparent,
@@ -253,7 +252,7 @@ extension FlowStateExtension on FlowState {
         ))));
   }
   showPopUpTemp(BuildContext context, StateRendererType stateRendererType,
-      String message,{String title = EMPTY,String route = EMPTY}) {
+      String message,{String title = '',String route = ''}) {
     WidgetsBinding.instance.addPostFrameCallback((_) => showDialog(
       barrierDismissible: false,
         context: context,

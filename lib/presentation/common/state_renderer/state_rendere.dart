@@ -6,7 +6,6 @@ import 'package:lottie/lottie.dart';
 
 import '../../../app/di.dart';
 import '../../../app/navigation_services.dart';
-import '../../../data/mapper/mapper.dart';
 import '../../resources/assets_manager.dart';
 import '../../resources/color_manager.dart';
 import '../../resources/font_manager.dart';
@@ -41,7 +40,7 @@ class StateRenderer extends StatelessWidget {
       String? title,
       required this.retryActionFunction})
       : message = message ?? AppStrings.loading,
-        title = title ?? EMPTY,
+        title = title ?? '',
         super(key: key);
 
   @override

@@ -1,11 +1,7 @@
-
-
 import 'dart:async';
-
 import 'package:smartpay/domain/usecase/sign_up_usecase.dart';
 import 'package:smartpay/presentation/base/baseviewmodel.dart';
 import 'package:smartpay/presentation/common/freezed_data_class.dart';
-
 import '../../app/app_prefs.dart';
 import '../../app/di.dart';
 import '../../app/function.dart';
@@ -27,23 +23,16 @@ with SignUpViewModelInputs, SignUpViewModelOutputs {
   final StreamController _isAllInputsValidStreamController = StreamController<void>.broadcast();
   final StreamController _isAllRegisterValidStreamController = StreamController<void>.broadcast();
 
-    StreamController isOtpVerifiedSuccessfullyStreamController =
+  StreamController isOtpVerifiedSuccessfullyStreamController =
   StreamController<String>();
-
   StreamController isEmailVerifiedSuccessfullyStreamController = StreamController<String>();
   StreamController isRegisteredSuccessfullyStreamController = StreamController<String>();
-
-
-  
-    var signupObject = SignUpObject("", "","", "","", "", "");
+  var signupObject = SignUpObject("", "","", "","", "", "");
 
   final SigUpUseCase _signUpUseCase;
 
   SignUpViewModel(this._signUpUseCase);
-  
-
-
- @override
+  @override
   void dispose() {
     _emailStreamController.close();
     _otpStreamController.close();

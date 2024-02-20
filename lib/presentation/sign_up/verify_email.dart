@@ -1,11 +1,9 @@
 import 'dart:async';
-
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter/services.dart';
 import 'package:pinput/pinput.dart';
 import 'package:smartpay/presentation/sign_up/sign_up_viewmodel.dart';
-
 import '../../app/app_prefs.dart';
 import '../../app/di.dart';
 import '../../app/navigation_services.dart';

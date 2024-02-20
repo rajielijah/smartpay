@@ -29,7 +29,7 @@ class AppStrings {
   static const String welcome = " Welcome back, Sign in to your account";
   static const String password = "Password";
   static const String passwordError = "Please enter valid password";
-  static const String hintPassword = "P assword";
+  static const String hintPassword = "Password";
   static const String forgetPassword = "Forgot password?";
   static const String passwordInfo = "Password must contain at least 1 uppercase alphabet, 1 lowercase alphabet, 1 number, 1 special character & 6 characters long.";
   static const String signUpNew = "Don’t have an account?";

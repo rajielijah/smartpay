@@ -14,7 +14,8 @@ import 'package:smartpay/presentation/resources/values_manager.dart';
 import '../../app/navigation_services.dart';
 import '../resources/font_manager.dart';
 import '../resources/strings_manager.dart';
-import '../reuseables/WidgetUtils.dart'; 
+import '../reuseables/WidgetUtils.dart';
+import 'dashboard_viewmodel.dart'; 
 
 class Dashboard extends StatefulWidget {
   const Dashboard({Key? key}) : super(key: key);
@@ -28,7 +29,7 @@ class _DashboardState extends State<Dashboard> {
   double sWidth = WidgetUtils.screenWidth;
   final NavigationService _navigationService = instance<NavigationService>();
 
-  // final DashboardViewModel _viewModel = instance<DashboardViewModel>();
+  final DashboardViewModel _viewModel = instance<DashboardViewModel>();
 
   final List<String> _quotes = [
     "Very little is needed to make a happy life. - Marcus Aurelius",
@@ -49,6 +50,8 @@ class _DashboardState extends State<Dashboard> {
   @override
   void initState() {
     super.initState();
+    _bind();
+
     _startTimer();
   }
 
@@ -62,16 +65,11 @@ class _DashboardState extends State<Dashboard> {
 
 // I tried to call the dashbaord API with both DIO and HTTP but I keep getting StatusCode 500
 
-  // _bind() async {
-  //   _viewModel.start();
-  //   _viewModel.getMessage();
-  // }
+  _bind() async {
+    _viewModel.start();
+    _viewModel.getMessage();
+  }
 
-  //  @override
-  // void initState() {
-  //   _bind();
-  //   super.initState();
-  // }
   @override
   Widget build(BuildContext context) {
     return Scaffold(

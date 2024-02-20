@@ -216,7 +216,9 @@ class OnBoardingPage extends StatelessWidget {
         Stack(
           alignment: Alignment.center,
           children: [
-            Positioned.fill(child: Image.asset(
+            Positioned.fill(
+             
+              child: Image.asset(
           _sliderObject.image,
           height: resHeight(AppSize.s190, sHeight),
           width: resWidth(AppSize.s194, sWidth),
