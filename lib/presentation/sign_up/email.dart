@@ -37,8 +37,6 @@ class _EmailViewState extends State<EmailView> {
   late StreamSubscription<ConnectivityResult> _connectivitySubscription;
     final NavigationService _navigationService = instance<NavigationService>();
   final AppPreferences _appPreferences = instance<AppPreferences>();
-
-
   final TextEditingController _emailController = TextEditingController();
   final _formKey = GlobalKey<FormState>();
   final SignUpViewModel _viewModel = instance<SignUpViewModel>();
@@ -46,7 +44,6 @@ class _EmailViewState extends State<EmailView> {
   _bind() async {
     _viewModel.start();
     _viewModel.setEmail(_emailController.text);
-
     _emailController
       .addListener(() => _viewModel.setEmail(_emailController.text));
 
@@ -56,15 +53,14 @@ class _EmailViewState extends State<EmailView> {
         _navigationService.navigateReplacementTo(Routes.verifyyouridentity);
       }); 
        });
-     
   }
 
   @override
   void initState() {
     _bind();
+    //check for the network
     _connectivitySubscription =
         _connectivity.onConnectivityChanged.listen(updateConnectionStatus);
-    // checkInternetConnectivity2();
     super.initState();
     _isEnabled = ValueNotifier<bool>(true);
   }
@@ -82,7 +78,6 @@ class _EmailViewState extends State<EmailView> {
        leading: IconButton(
                 alignment: Alignment.centerRight,
                 onPressed: () {
-                  // _viewModel.inputState.add(null);
                   _navigationService.navigateReplacementTo(Routes.loginRoute);
                 },
                 icon: Container(
@@ -94,15 +89,17 @@ class _EmailViewState extends State<EmailView> {
                    ),
                   child: Padding(
                      padding: EdgeInsets.only(
-                left: resWidth(AppSize.s4, sWidth),
+                        left: resWidth(AppSize.s4, sWidth),
                 ),
                     child: Align(
                       alignment: Alignment.center,
                       child: Icon(Icons.arrow_back_ios, 
                       size: AppSize.s14,
                       color: ColorManager.primaryButtonColor,)),
-                  ))),
-      ),
+              )
+            )
+          ),
+        ),
        backgroundColor: ColorManager.white,
         body: StreamBuilder<FlowState>(
             stream: _viewModel.outputState,
@@ -270,7 +267,7 @@ Widget _getContentWidget() {
               ],
             ),
           ),    
-            SizedBox(
+          SizedBox(
             height: resHeight(AppSize.s95, sHeight),
           ),
           Center(

@@ -70,15 +70,6 @@ class _OnBoardingViewState extends State<OnBoardingView> {
           ),
           resizeToAvoidBottomInset: false,
           backgroundColor: ColorManager.white,
-          // appBar: AppBar(
-          //   backgroundColor: ColorManager.white,
-          //   elevation: AppSize.s0,
-          //   systemOverlayStyle: SystemUiOverlayStyle(
-          //     statusBarColor: ColorManager.primary,
-          //     statusBarBrightness: Brightness.dark,
-          //     statusBarIconBrightness: Brightness.dark,
-          //   ),
-          // ),
           body: PageView.builder(
               controller: _pageController,
               itemCount: sliderViewObject.numOfSlides,

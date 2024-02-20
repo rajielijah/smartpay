@@ -10,16 +10,8 @@ const String PREFS_KEY_USER_EMAIL = "PREFS_KEY_USER_EMAIL";
 const String PREFS_KEY_NEW_EMAIL = "PREFS_KEY_NEW_EMAIL";
 const String PREFS_KEY_USERNAME = "PREFS_KEY_USERNAME";
 
-
-
-
-
-
-
 class AppPreferences {
-
-   final SharedPreferences _sharedPreferences;
-
+  final SharedPreferences _sharedPreferences;
   AppPreferences(this._sharedPreferences);
 
     Future<void> setUserEmail(String userEmail) async {
@@ -38,7 +30,7 @@ class AppPreferences {
   }
 
     Future<String> getdevice_name() async{
-    return _sharedPreferences.getString(PREFS_KEY_DEVICE_TOKEN) ?? "frn29CE0M0Xmu00QEWiO_i:APA91bFl8ewytX60UWzm4loASQp-0wGfVDejCcKl62jShkupZQmH4Qf6LbkRl-uvh5w5cT6irSkc1uwEFsiswe2KrSqQE24-cWeY02oeisKnZ-TJuW33DsNsgaQFkdym4sofuaFST0hJ";
+    return _sharedPreferences.getString(PREFS_KEY_DEVICE_TOKEN) ?? "web";
   }
 
   Future<void> setUserName(String userName) async {

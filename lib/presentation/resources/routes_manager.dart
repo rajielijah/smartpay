@@ -16,9 +16,7 @@ import '../splash/splash.dart';
 class Routes {
   static const String splashRoute = "/";
   static const String onBoardingRoute = "/onBoarding";
-  static const String landingPageRoute = "/landingPage";
   static const String loginRoute = "/login";
-  static const String otpRoute = "/otp";
   static const String register = "/register";
   static const String dashboard = "/dashboard";
   static const String verifyyouridentity = "/verifyyouridentity";

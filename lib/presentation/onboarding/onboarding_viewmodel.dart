@@ -1,13 +1,6 @@
-
-
-
 // ignore_for_file: unused_local_variable
-
 import 'dart:async';
-
-
 import 'package:smartpay/presentation/base/baseviewmodel.dart';
-
 import '../../domain/model/model.dart';
 import '../resources/assets_manager.dart';
 import '../resources/strings_manager.dart';
@@ -45,10 +38,6 @@ class OnBoardingViewModel extends BaseViewModel
   @override
   int goPrevious() {
     int previousIndex = _currentIndex--; // -1
-    // if (previousIndex == -1) {
-    //   _currentIndex =
-    //       _list.length - 1; // infinite loop to go to the length of slider list
-    // }
     return _currentIndex;
   }
 

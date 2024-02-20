@@ -12,24 +12,18 @@ import '../common/state_renderer/state_render_impl.dart';
 import '../common/state_renderer/state_rendere.dart';
 
 class LoginViewModel extends BaseViewModel 
-with LoginViewModelInputs, LoginViewModelOutputs {
+  with LoginViewModelInputs, LoginViewModelOutputs {
 
   final AppPreferences _appPreferences = instance<AppPreferences>();
-
   final StreamController _userNameStreamController = StreamController<String>.broadcast();
   final StreamController _passwordStreamController = StreamController<String>.broadcast();
   final StreamController _isAllInputsValidStreamController = StreamController<void>.broadcast();
-
   StreamController isUserLoggedInSuccessfullyStreamController = StreamController<String>();
-
-
-    var loginObject = LoginObject("", "");
-
+  var loginObject = LoginObject("", "");
   final LoginUseCase _loginUseCase;
-
   LoginViewModel(this._loginUseCase);
 
-    // inputs
+  // inputs
   @override
   void dispose() {
     _userNameStreamController.close();
@@ -71,8 +65,7 @@ with LoginViewModelInputs, LoginViewModelOutputs {
               _appPreferences.setUserEmail(loginObject.email);
           // navigate to main screen after the login
               isUserLoggedInSuccessfullyStreamController.add("");
-             
-        });
+       });
   }
 
   @override

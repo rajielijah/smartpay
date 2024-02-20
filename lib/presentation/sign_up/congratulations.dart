@@ -4,7 +4,6 @@ import 'package:smartpay/presentation/resources/assets_manager.dart';
 import 'package:smartpay/presentation/resources/font_manager.dart';
 import 'package:smartpay/presentation/resources/strings_manager.dart';
 import 'package:smartpay/presentation/resources/styles_manager.dart';
-
 import '../../app/app_prefs.dart';
 import '../../app/di.dart';
 import '../../app/navigation_services.dart';

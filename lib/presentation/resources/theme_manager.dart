@@ -1,11 +1,9 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-
 import 'package:pinput/pinput.dart';
 import 'package:smartpay/presentation/resources/styles_manager.dart';
 import 'package:smartpay/presentation/resources/values_manager.dart';
-
 import 'color_manager.dart';
 import 'font_manager.dart';
 

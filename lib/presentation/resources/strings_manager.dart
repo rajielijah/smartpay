@@ -16,8 +16,6 @@ class AppStrings {
   static const String confirm= "Confirm";
   static const String getStarted= "Get Started";
   static const String continued = "Continue";
-
-
   static const String create= "Create a";
   static const String account= "account";
   static const String skip= "Skip";
@@ -47,24 +45,8 @@ class AppStrings {
   static const String passwordrecovery = "Passsword Recovery";
   static const String pdDesc = "Enter your registered email below to receive \n password instructions";
   static const String or = "OR";
-
-
-  
-
-  
-
-
-
-  
-
-
-
-
-
-
   static const String forgotPassword = "Forgot password?";
   static const String sendmemail = "Send me mail";
-
   static const String forgotPasswordBodyText = "Enter your registered email below to receive \npassword instructions";
 
 

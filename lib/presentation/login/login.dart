@@ -70,9 +70,9 @@ class _LoginViewState extends State<LoginView> {
     @override
   void initState() {
     _bind();
+    //Check for internet connectivity
     _connectivitySubscription =
         _connectivity.onConnectivityChanged.listen(updateConnectionStatus);
-    // checkInternetConnectivity2();
     super.initState();
     _isEnabled = ValueNotifier<bool>(true);
   }
@@ -90,8 +90,7 @@ class _LoginViewState extends State<LoginView> {
          leading: IconButton(
                 alignment: Alignment.centerRight,
                 onPressed: () {
-                  // _viewModel.inputState.add(null);
-                  _navigationService.navigateReplacementTo(Routes.landingPageRoute);
+                  _navigationService.navigateReplacementTo(Routes.onBoardingRoute);
                 },
                 icon: Container(
                   height: AppSize.s40,
@@ -192,10 +191,7 @@ class _LoginViewState extends State<LoginView> {
                         ),
                       ),
                       hintText: "Email",
-                      // errorText: (snapshot.data ?? true)
-                      //     ? null
-                      //     : "Kindly enter a valid email",
-                    ));
+                     ));
               },
             ),
           ),
@@ -379,7 +375,7 @@ class _LoginViewState extends State<LoginView> {
       ),
     );
   }
-    @override
+  @override
   void dispose() {
     _connectivitySubscription.cancel();
     _timer?.cancel();

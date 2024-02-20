@@ -138,34 +138,21 @@ class AppSize {
   static const double s136 = 136.0;
   static const double s140 = 140.0;
   static const double s155 = 155.0;
-  static const double s169 = 169.0;
-  static const double s179 = 179.0;
   static const double s180 = 180.0;
   static const double s189 = 189.0;
   static const double s190 = 190.0;
   static const double s194 = 194.0;
   static const double s200 = 200.0;
   static const double s203 = 203.0;
-  static const double s222 = 222.0;
   static const double s230 = 230.0;
-  static const double s234 = 234.0;
-  static const double s236 = 236.0;
   static const double s241 = 241.0;
-  static const double s246 = 246.0;
   static const double s255 = 255.0;
-  static const double s269 = 269.0;
-  static const double s277 = 277.0;
   static const double s282 = 282.0;
   static const double s287 = 287.0;
   static const double s298 = 298.0;
   static const double s300 = 300.0;
-  static const double s302 = 302.0;
-  static const double s322 = 322.0;
   static const double s327 = 327.0;
-  static const double s340 = 340.0;
   static const double s375 = 375.0;
-  static const double s400 = 400.0;
-  static const double s600 = 600.0;
 }
 
 class DurationConstant{

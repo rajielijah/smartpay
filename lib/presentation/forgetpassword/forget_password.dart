@@ -39,11 +39,6 @@ class ForgotPasswordViewState extends State<ForgotPasswordView> {
       child: Scaffold(
           resizeToAvoidBottomInset: false,
           appBar: AppBar(
-            // systemOverlayStyle: SystemUiOverlayStyle(
-            //   statusBarColor: ColorManager.primary,
-            //   statusBarBrightness: Brightness.dark,
-            //   statusBarIconBrightness: Brightness.dark,
-            // ),
             ),
           backgroundColor: ColorManager.white,
           body: _getContentWidget(),

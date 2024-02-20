@@ -74,7 +74,6 @@ class _RegisterViewState extends State<RegisterView> {
     _bind();
     _connectivitySubscription =
         _connectivity.onConnectivityChanged.listen(updateConnectionStatus);
-    // checkInternetConnectivity2();
     super.initState();
     _isEnabled = ValueNotifier<bool>(true);
   }
@@ -92,7 +91,6 @@ class _RegisterViewState extends State<RegisterView> {
           leading: IconButton(
                 alignment: Alignment.centerRight,
                 onPressed: () {
-                  // _viewModel.inputState.add(null);
                   _navigationService.navigateReplacementTo(Routes.loginRoute);
                 },
                 icon: Container(
@@ -368,7 +366,6 @@ class _RegisterViewState extends State<RegisterView> {
                                   ? () {
                                       _isEnabled.value = false;
                                       _viewModel.register();
-                                      // _navigationService.navigateReplacementTo(Routes.congratulations);
                                       _timer = Timer(
                                           const Duration(milliseconds: 200),
                                           () => _isEnabled.value = true);
@@ -406,7 +403,6 @@ class _RegisterViewState extends State<RegisterView> {
     'Germany': 'DE',
     'France': 'FR',
     'Italy': 'IT',
-    // Add more countries and their codes as needed
   };
 
  void _showCountryPicker() {
@@ -431,8 +427,8 @@ class _RegisterViewState extends State<RegisterView> {
               title: Text(
                  countryName,
                 style: const TextStyle(
-                  fontSize: AppSize.s18, // Customize font size
-                  fontWeight: FontWeight.bold, // Change font weight
+                  fontSize: AppSize.s18, 
+                  fontWeight: FontWeight.bold,
                 ),
               ),
               leading: const Icon(Icons.flag), 
